@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - ATU AI Competition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        .lang-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <nav class="bg-white shadow-sm py-4">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center gap-4">
+            <a href="{{ url_for('main') }}" class="text-2xl font-extrabold text-blue-900 tracking-tighter">ATU</a>
+
+            <div class="flex items-center gap-3">
+                <div class="hidden sm:flex items-center bg-gray-100 rounded-full p-1" role="group" aria-label="Language switcher">
+                    <button type="button" class="lang-btn px-3 py-1 rounded-full text-xs font-semibold transition" data-lang="kz">KZ</button>
+                    <button type="button" class="lang-btn px-3 py-1 rounded-full text-xs font-semibold transition" data-lang="ru">RU</button>
+                    <button type="button" class="lang-btn px-3 py-1 rounded-full text-xs font-semibold transition" data-lang="en">EN</button>
+                </div>
+
+                <a href="{{ url_for('main') }}" id="back-link" class="text-sm font-semibold text-gray-500 hover:text-blue-600 transition">
+                    <i class="fas fa-arrow-left mr-2"></i> Вернуться на главную
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-gradient py-12 md:py-20 px-4">
+        <div class="max-w-3xl mx-auto text-center text-white">
+            <h1 id="hero-title" class="text-3xl md:text-5xl font-black mb-4">Регистрация команды</h1>
+            <p id="hero-subtitle" class="text-blue-100 opacity-90">
+                Заполните форму ниже, чтобы забронировать место в хакатоне. Мы свяжемся с капитаном в течение 24 часов.
+            </p>
+        </div>
+    </div>
+
+    <main class="max-w-3xl mx-auto px-4 -mt-12 pb-20">
+        <form id="registrationForm" class="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-12 border border-gray-100">
+
+            <div class="mb-10">
+                <h3 id="section-1-title" class="text-xl font-bold text-blue-900 mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3 text-sm">1</span>
+                    Общая информация
+                </h3>
+
+                <div class="grid grid-cols-1 gap-6">
+                    <div>
+                        <label id="team-name-label" class="block text-sm font-bold text-gray-700 mb-2">Название команды *</label>
+                        <input
+                            type="text"
+                            name="team_name"
+                            required
+                            placeholder="Напр: AI Pioneers"
+                            class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition"
+                        >
+                    </div>
+
+                    <div>
+                        <label id="track-label" class="block text-sm font-bold text-gray-700 mb-2">Выбор направления (Трек) *</label>
+                        <select
+                            name="track"
+                            required
+                            class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition appearance-none"
+                        >
+                            <option id="track-placeholder" value="" disabled selected>Выберите категорию...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mb-10 border-gray-100">
+
+            <div class="mb-10">
+                <h3 id="section-2-title" class="text-xl font-bold text-blue-900 mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3 text-sm">2</span>
+                    Данные капитана
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="md:col-span-2">
+                        <label id="captain-fullname-label" class="block text-sm font-bold text-gray-700 mb-2">ФИО полностью *</label>
+                        <input
+                            type="text"
+                            name="captain_full_name"
+                            required
+                            placeholder="Иванов Иван Иванович"
+                            class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition"
+                        >
+                    </div>
+
+                    <div>
+                        <label id="captain-email-label" class="block text-sm font-bold text-gray-700 mb-2">Email *</label>
+                        <input
+                            type="email"
+                            name="captain_email"
+                            required
+                            placeholder="example@mail.com"
+                            class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition"
+                        >
+                    </div>
+
+                    <div>
+                        <label id="captain-phone-label" class="block text-sm font-bold text-gray-700 mb-2">Телефон (WhatsApp) *</label>
+                        <input
+                            type="tel"
+                            name="captain_phone"
+                            required
+                            placeholder="+7 (___) ___-__-__"
+                            class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition"
+                        >
+                    </div>
+
+<!--                    <div class="md:col-span-2">-->
+<!--                        <label id="captain-org-label" class="block text-sm font-bold text-gray-700 mb-2">ВУЗ / Организация *</label>-->
+<!--                        <input-->
+<!--                            type="text"-->
+<!--                            name="captain_organization"-->
+<!--                            required-->
+<!--                            placeholder="Напр: АТУ"-->
+<!--                            class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition"-->
+<!--                        >-->
+<!--                    </div>-->
+
+                    <div class="md:col-span-2">
+                        <label id="captain-city-label" class="block text-sm font-bold text-gray-700 mb-2">Город *</label>
+                        <input
+                            type="text"
+                            name="captain_city"
+                            required
+                            placeholder="Напр: Алматы"
+                            class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mb-10 border-gray-100">
+
+            <div class="mb-10">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="section-3-title" class="text-xl font-bold text-blue-900 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3 text-sm">3</span>
+                        Участники команды
+                    </h3>
+
+                    <button type="button" id="addMember" class="text-blue-600 text-sm font-bold hover:underline">
+                        <i class="fas fa-plus-circle mr-1"></i> <span id="add-member-text">Добавить</span>
+                    </button>
+                </div>
+
+                <div id="membersList" class="space-y-4">
+                    <div class="p-5 bg-gray-50 rounded-2xl border border-gray-100 relative group">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input
+                                type="text"
+                                name="member_name_1"
+                                placeholder="ФИО участника"
+                                class="member-name w-full px-4 py-3 border border-gray-200 rounded-xl bg-white transition"
+                            >
+                            <input
+                                type="text"
+                                name="member_city_1"
+                                placeholder="Город"
+                                class="member-city w-full px-4 py-3 border border-gray-200 rounded-xl bg-white transition"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <p id="members-note" class="mt-4 text-xs text-gray-400 italic">
+                    Максимум 5 человек в команде, включая капитана.
+                </p>
+            </div>
+
+            <div class="bg-blue-50 p-6 rounded-3xl mb-10 border border-blue-100">
+                <label class="flex items-start cursor-pointer">
+                    <input type="checkbox" name="agreement" required class="mt-1 mr-3 w-5 h-5 text-blue-600 rounded">
+                    <span id="agreement-text" class="text-sm text-blue-900 leading-relaxed">
+                        Я подтверждаю, что все члены команды ознакомлены с <a href="#" class="underline font-bold">правилами соревнования</a> и согласны на обработку персональных данных.
+                    </span>
+                </label>
+            </div>
+
+            <button id="submit-btn" type="submit" class="w-full bg-blue-600 text-white py-5 rounded-2xl text-xl font-black hover:bg-blue-700 hover:shadow-2xl hover:scale-[1.02] transition transform">
+                ОТПРАВИТЬ ЗАЯВКУ
+            </button>
+        </form>
+
+        <div id="successMessage" class="hidden bg-white rounded-[2.5rem] shadow-2xl p-12 text-center border-4 border-green-500">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 id="success-title" class="text-3xl font-black text-gray-900 mb-4">Заявка принята!</h2>
+            <p id="success-text" class="text-gray-600 mb-8 text-lg">Мы отправили подтверждение на почту капитана. Готовьтесь к великим делам!</p>
+            <a href="{{ url_for('main') }}" id="success-back" class="inline-block bg-gray-900 text-white px-8 py-4 rounded-2xl font-bold">На главную</a>
+        </div>
+    </main>
+
+    <script>
+        const translations = {
+            ru: {
+                lang: "ru",
+                title: "Регистрация - ATU AI Competition",
+                back: "Вернуться на главную",
+
+                heroTitle: "Регистрация команды",
+                heroSubtitle: "Заполните форму ниже.",
+
+                section1: "Общая информация",
+                teamName: "Название команды *",
+                teamNamePlaceholder: "Напр: AI Pioneers",
+                trackLabel: "Выбор направления (Трек) *",
+                trackPlaceholder: "Выберите категорию...",
+
+                section2: "Данные капитана",
+                captainFullName: "ФИО полностью *",
+                captainFullNamePlaceholder: "Иванов Иван Иванович",
+                captainEmail: "Email *",
+                captainEmailPlaceholder: "example@mail.com",
+                captainPhone: "Телефон (WhatsApp) *",
+                captainPhonePlaceholder: "+7 (___) ___-__-__",
+                captainOrg: "ВУЗ / Организация *",
+                captainOrgPlaceholder: "Напр: АТУ",
+                captainCity: "Город *",
+                captainCityPlaceholder: "Напр: Алматы",
+
+                section3: "Участники команды",
+                addMember: "Добавить",
+                memberNamePlaceholder: "ФИО участника",
+                memberCityPlaceholder: "Город",
+                membersNote: "Максимум 4 человек в команде, включая капитана.",
+                maxMembersAlert: "Максимум 4 человек в команде!",
+
+                agreement: 'Я подтверждаю, что все члены команды ознакомлены с <a href="#" class="underline font-bold">правилами соревнования</a> и согласны на обработку персональных данных.',
+                submit: "ОТПРАВИТЬ ЗАЯВКУ",
+
+                successTitle: "Заявка принята!",
+                successText: "Мы отправили подтверждение на почту капитана. Готовьтесь к великим делам!",
+                successBack: "На главную"
+            },
+
+            kz: {
+                lang: "kz",
+                title: "Тіркелу - ATU AI Competition",
+                back: "Басты бетке оралу",
+
+                heroTitle: "Команданы тіркеу",
+                heroSubtitle: "Форманы толтырыңыз.",
+
+                section1: "Жалпы ақпарат",
+                teamName: "Команда атауы *",
+                teamNamePlaceholder: "Мысалы: AI Pioneers",
+                trackLabel: "Бағытты таңдау (Трек) *",
+                trackPlaceholder: "Санатты таңдаңыз...",
+
+                section2: "Капитан мәліметтері",
+                captainFullName: "Толық аты-жөні *",
+                captainFullNamePlaceholder: "Иванов Иван Иванович",
+                captainEmail: "Email *",
+                captainEmailPlaceholder: "example@mail.com",
+                captainPhone: "Телефон (WhatsApp) *",
+                captainPhonePlaceholder: "+7 (___) ___-__-__",
+                captainOrg: "ЖОО / Ұйым *",
+                captainOrgPlaceholder: "Мысалы: АТУ",
+                captainCity: "Қала *",
+                captainCityPlaceholder: "Мысалы: Алматы",
+
+                section3: "Команда қатысушылары",
+                addMember: "Қосу",
+                memberNamePlaceholder: "Қатысушының аты-жөні",
+                memberCityPlaceholder: "Қала",
+                membersNote: "Капитанды қоса алғанда, командада ең көбі 4 адам болуы мүмкін.",
+                maxMembersAlert: "Командада ең көбі 4 адам болуы мүмкін!",
+
+                agreement: 'Мен команда мүшелерінің барлығы <a href="#" class="underline font-bold">сайыс ережелерімен</a> таныс екенін және жеке деректерді өңдеуге келісетінін растаймын.',
+                submit: "ӨТІНІМ ЖІБЕРУ",
+
+                successTitle: "Өтінім қабылданды!",
+                successText: "Біз растауды капитанның поштасына жібердік. Үлкен істерге дайындалыңыз!",
+                successBack: "Басты бетке"
+            },
+
+            en: {
+                lang: "en",
+                title: "Registration - ATU AI Competition",
+                back: "Back to home",
+
+                heroTitle: "Team Registration",
+                heroSubtitle: "Fill out the form below.",
+
+                section1: "General Information",
+                teamName: "Team Name *",
+                teamNamePlaceholder: "E.g.: AI Pioneers",
+                trackLabel: "Choose a Track *",
+                trackPlaceholder: "Choose a category...",
+
+                section2: "Captain Information",
+                captainFullName: "Full Name *",
+                captainFullNamePlaceholder: "John Doe",
+                captainEmail: "Email *",
+                captainEmailPlaceholder: "example@mail.com",
+                captainPhone: "Phone (WhatsApp) *",
+                captainPhonePlaceholder: "+7 (___) ___-__-__",
+                captainOrg: "University / Organization *",
+                captainOrgPlaceholder: "E.g.: ATU",
+                captainCity: "City *",
+                captainCityPlaceholder: "E.g.: Almaty",
+
+                section3: "Team Members",
+                addMember: "Add",
+                memberNamePlaceholder: "Participant full name",
+                memberCityPlaceholder: "City",
+                membersNote: "Maximum 4 people in a team, including the captain.",
+                maxMembersAlert: "Maximum 4 people in a team!",
+
+                agreement: 'I confirm that all team members have read the <a href="#" class="underline font-bold">competition rules</a> and agree to the processing of personal data.',
+                submit: "SUBMIT APPLICATION",
+
+                successTitle: "Application accepted!",
+                successText: "We have sent a confirmation to the captain’s email. Get ready for great things!",
+                successBack: "Back to home"
+            }
+        };
+
+        function setText(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        function setHTML(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = value;
+        }
+
+        function setPlaceholder(selector, value) {
+            const el = document.querySelector(selector);
+            if (el) el.placeholder = value;
+        }
+
+        function applyLang(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            document.documentElement.lang = t.lang;
+            document.title = t.title;
+
+            setHTML("back-link", `<i class="fas fa-arrow-left mr-2"></i> ${t.back}`);
+            setText("hero-title", t.heroTitle);
+            setText("hero-subtitle", t.heroSubtitle);
+
+            setText("section-1-title", t.section1);
+            setText("team-name-label", t.teamName);
+            setText("track-label", t.trackLabel);
+
+            setText("section-2-title", t.section2);
+            setText("captain-fullname-label", t.captainFullName);
+            setText("captain-email-label", t.captainEmail);
+            setText("captain-phone-label", t.captainPhone);
+            setText("captain-org-label", t.captainOrg);
+            setText("captain-city-label", t.captainCity);
+
+            setText("section-3-title", t.section3);
+            setText("add-member-text", t.addMember);
+            setText("members-note", t.membersNote);
+
+            setHTML("agreement-text", t.agreement);
+            setText("submit-btn", t.submit);
+
+            setText("success-title", t.successTitle);
+            setText("success-text", t.successText);
+            setText("success-back", t.successBack);
+
+            const trackPlaceholder = document.querySelector('select[name="track"] option[value=""]');
+            if (trackPlaceholder) trackPlaceholder.textContent = t.trackPlaceholder;
+
+            setPlaceholder('input[name="team_name"]', t.teamNamePlaceholder);
+            setPlaceholder('input[name="captain_full_name"]', t.captainFullNamePlaceholder);
+            setPlaceholder('input[name="captain_email"]', t.captainEmailPlaceholder);
+            setPlaceholder('input[name="captain_phone"]', t.captainPhonePlaceholder);
+            setPlaceholder('input[name="captain_organization"]', t.captainOrgPlaceholder);
+            setPlaceholder('input[name="captain_city"]', t.captainCityPlaceholder);
+
+            document.querySelectorAll(".member-name").forEach(el => {
+                el.placeholder = t.memberNamePlaceholder;
+            });
+
+            document.querySelectorAll(".member-city").forEach(el => {
+                el.placeholder = t.memberCityPlaceholder;
+            });
+
+            document.querySelectorAll(".lang-btn").forEach(btn => {
+                btn.classList.remove("active");
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add("active");
+                }
+            });
+
+            localStorage.setItem("atu_register_lang", lang);
+        }
+
+        const addBtn = document.getElementById("addMember");
+        const list = document.getElementById("membersList");
+        let memberCount = 1;
+
+        addBtn.addEventListener("click", () => {
+            const currentLang = localStorage.getItem("atu_register_lang") || "ru";
+            const t = translations[currentLang];
+
+            if (memberCount < 3) {
+                memberCount++;
+
+                const div = document.createElement("div");
+                div.className = "p-5 bg-gray-50 rounded-2xl border border-gray-100 relative animate-fade-in";
+                div.innerHTML = `
+                    <button type="button" class="remove-btn absolute -right-2 -top-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs shadow-lg hover:bg-red-600 transition">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input
+                            type="text"
+                            name="member_name_${memberCount}"
+                            placeholder="${t.memberNamePlaceholder}"
+                            class="member-name w-full px-4 py-3 border border-gray-200 rounded-xl bg-white transition"
+                        >
+                        <input
+                            type="text"
+                            name="member_city_${memberCount}"
+                            placeholder="${t.memberCityPlaceholder}"
+                            class="member-city w-full px-4 py-3 border border-gray-200 rounded-xl bg-white transition"
+                        >
+                    </div>
+                `;
+
+                list.appendChild(div);
+
+                div.querySelector(".remove-btn").addEventListener("click", () => {
+                    div.remove();
+                    memberCount--;
+                });
+            } else {
+                alert(t.maxMembersAlert);
+            }
+        });
+
+        const form = document.getElementById("registrationForm");
+        const success = document.getElementById("successMessage");
+
+        form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+        team_name: form.team_name.value,
+        track: form.track.value,
+
+        captain_full_name: form.captain_full_name.value,
+        captain_email: form.captain_email.value,
+        captain_phone: form.captain_phone.value,
+        captain_city: form.captain_city.value,
+
+        participant_1: form.member_name_1.value,
+        participant_city_1: form.member_city_1.value,
+
+        participant_2: form.member_name_2?.value || "",
+        participant_city_2: form.member_city_2?.value || "",
+
+        participant_3: form.member_name_3?.value || "",
+        participant_city_3: form.member_city_3?.value || "",
+
+        participant_4: form.member_name_4?.value || "",
+        participant_city_4: form.member_city_4?.value || "",
+    };
+
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.status === "ok") {
+            form.classList.add("hidden");
+            success.classList.remove("hidden");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+            alert(result.message || "Ошибка при отправке формы");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Сервер недоступен или произошла ошибка сети");
+    }
+});
+        document.querySelectorAll(".lang-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                applyLang(button.dataset.lang);
+            });
+        });
+
+        const savedLang = localStorage.getItem("atu_register_lang") || "ru";
+        applyLang(savedLang);
+    </script>
+
+</body>
+</html>
