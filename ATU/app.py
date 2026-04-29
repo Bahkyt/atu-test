@@ -774,4 +774,4 @@ def logout():
     session.clear()
     return redirect("/")
 
-app.run(debug=True)
+app.run(host="0.0.0.0")
