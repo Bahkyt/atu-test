@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ATU IT Battle</title>
+    <title>ATU & KazNU AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -58,16 +58,12 @@
 </head>
 <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
 
-    <!-- NAVBAR -->
-<!-- NAVBAR: ATU IT Battle (Tailwind + minimal custom CSS + JS) -->
 <style>
-  /* 1) Синхронизация визуального active для языка (без статического active в HTML) */
   .lang-btn.active {
     background: #2563eb; /* tailwind blue-600 */
     color: #fff;
   }
 
-  /* 2) Авто-типографика через clamp(): логотип и пункты меню чуть подстраиваются по ширине */
   .brand-logo {
     font-size: clamp(18px, 1.35vw, 24px);
     line-height: 1.05;
@@ -77,7 +73,6 @@
     line-height: 1;
   }
 
-  /* 3) Чуть приятнее фокус для клавиатуры (не конфликтует с Tailwind) */
   .focus-ring:focus-visible {
     outline: 2px solid rgba(37, 99, 235, 0.6);
     outline-offset: 2px;
@@ -98,7 +93,7 @@
             <!-- Logo -->
             <a href="#home"
                class="brand-logo font-extrabold text-blue-900 tracking-tight whitespace-nowrap shrink-0 focus-ring">
-              ATU IT Battle
+              ATU & KazNU
             </a>
 
             <!-- Desktop menu
@@ -209,24 +204,25 @@
       id="hero-badge"
       class="inline-block bg-blue-400/20 py-2 px-4 rounded-full text-[10px] sm:text-xs md:text-sm font-bold mb-5 md:mb-6 border border-blue-300/30 uppercase tracking-widest"
     >
-      Almaty Technological University
+      ATU & KazNU AI Hackathon
     </span>
 
     <h1
       id="hero-title"
       class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 md:mb-6 leading-[1.1] break-words"
     >
-      «ATU IT Battle»<br />
-      <span class="text-blue-200">цифрлық шешімдер сайысы</span>
+      «ATU & KazNU AI Hackathon» цифрлық шешімдер сайысы<br />
+      <span class="text-blue-200 text-lg md:text-xl font-normal">
+        Ұйымдастырушылар: Алматы технологиялық университеті (АТУ) және Әл-Фараби атындағы Қазақ ұлттық университеті (ҚазҰУ).
+      </span>
     </h1>
 
-    <p
-      id="hero-subtitle"
-      class="text-base sm:text-lg md:text-xl mb-8 md:mb-10 text-blue-50 max-w-3xl mx-auto leading-relaxed"
-    >
-      Жасанды интеллектпен идеяңды іске асыр – ATU IT Battle-де жеңіске жет!
-      Бас жүлде – 300 000 теңге!
-    </p>
+<p
+  id="hero-subtitle"
+  class="text-[14px] sm:text-[16px] md:text-[18px] mb-8 md:mb-10 text-blue-50/80 max-w-3xl mx-auto leading-relaxed"
+>
+  Демеуші: China Computer Federation (CCF).
+</p>
 
     <div class="mb-8 md:mb-10">
       <div class="inline-block bg-white/10 backdrop-blur-sm px-4 sm:px-5 py-3 rounded-xl border border-white/20">
@@ -283,7 +279,7 @@
                     Сайыс туралы
                 </h2>
                 <p id="about-text" class="text-lg text-gray-600 leading-relaxed">
-                    «ATU IT Battle» цифрлық шешімдер сайысының мақсаты – тағам өндірісі, қаржы саласы,
+                    «ATU & KazNU AI» цифрлық шешімдер сайысының мақсаты – тағам өндірісі, қаржы саласы,
                     мейрамхана бизнесі, туризм және қызмет көрсету индустриясындағы өзекті мәселелерді шешуге
                     бағытталған заманауи цифрлық және жасанды интеллектке негізделген IT-шешімдерді әзірлеу,
                     білім алушылардың инновациялық ойлау қабілетін дамыту және олардың тәжірибелік
@@ -401,34 +397,50 @@
                 </div>
                 <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
                     <div>
-                        <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="partner_name_1_essence_exercise" class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Суть задачи</p>
                         <p id="partner_name_1_description" class="text-gray-700 leading-relaxed text-sm">Разработать инструмент для базового анализа производственных показателей с целью контроля качества продукции.</p>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
-                        <ul id="partner_name_1_tasks" class="space-y-1 text-sm text-gray-600">
-                            <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Найти отклонения в производственных параметрах</li>
-                            <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Посчитать процент бракованной продукции</li>
-                            <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Построить наглядные графики для анализа</li>
+                        <p id="partner_name_1_system_exercise" class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li id="partner_name_1_essence_exercise_1" class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Найти отклонения в производственных параметрах</li>
+                            <li id="partner_name_1_essence_exercise_2" class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Посчитать процент бракованной продукции</li>
+                            <li id="partner_name_1_essence_exercise_3" class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Построить наглядные графики для анализа</li>
                         </ul>
+                    </div>
+                    <div>
+                        <p id="t1_actually_label" class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Фактически решается задача</p>
+                        <p id="t1_actually_text" class="text-gray-700 leading-relaxed text-sm">Построения первичного дашборда и расчетной модели для оценки качества.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-3 text-sm">
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
-                            <p class="text-gray-700 font-medium">Таблица: температура, влажность, время, статус</p>
+                            <p id="partner_name_1_input_data" class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p id="partner_name_1_table" class="text-gray-700 font-medium">Таблица: температура, влажность, время, статус</p>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
-                            <p class="text-gray-700 font-medium">Файл <strong>.py</strong> или <strong>.ipynb</strong> с дашбордом</p>
+                            <p id="t1_req_label" class="text-xs text-gray-400 mb-1">Требования к решению</p>
+                            <p id="t1_req_text" class="text-gray-700 font-medium">Инструменты: Python, Jupyter Notebook.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p id="partner_name_1_result_format" class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p class="text-gray-700 font-medium"><span id="partner_name_1_file">Файл</span> <strong>.py</strong> <span id="or">или</span> <strong>.ipynb</strong> <span id="partner_name_1_dashboard">с дашбордом</span></p>
                         </div>
                     </div>
+<!--                    <div>-->
+<!--                        <p id="t1_format_label" class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Формат результата</p>-->
+<!--                        <p id="t1_format_text" class="text-gray-700 leading-relaxed text-sm">Скрипт .py или Jupyter Notebook .ipynb с логикой обработки данных и выводом результатов.</p>-->
+<!--                    </div>-->
                     <div class="mt-auto pt-2 border-t border-gray-100">
-                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <p id="partner_name_1_evaluation_criteria" class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
                         <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-semibold">✅ Расчёты — 40%</span>
-                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-semibold">📊 Визуализация — 30%</span>
-                            <span class="bg-violet-50 text-violet-700 px-3 py-1 rounded-full font-semibold">💡 Выводы — 30%</span>
+                            <span id="partner_name_1_calculations" class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-semibold">✅ Расчёты — 40%</span>
+                            <span id="partner_name_1_visualization" class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-semibold">📊 Визуализация — 30%</span>
+                            <span id="partner_name_1_conclusions" class="bg-violet-50 text-violet-700 px-3 py-1 rounded-full font-semibold">💡 Выводы — 30%</span>
                         </div>
+                    </div>
+                    <div>
+                        <p id="partner_name_1_expected_result" class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Ожидаемый результат</p>
+                        <p id="partner_name_1_expected_result_description" class="text-gray-700 leading-relaxed text-sm">Готовый Python-файл(.py, .ipynb), способный на основе введенных параметров автоматически рассчитывать метрики брака и визуализировать отклонения.</p>
                     </div>
                 </div>
             </div>
@@ -441,33 +453,45 @@
                 </div>
                 <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
                     <div>
-                        <p class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="t2_essence_label" class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Суть задачи</p>
                         <p id="partner_name_2_description" class="text-gray-700 leading-relaxed text-sm">Автоматизировать процесс выявления производственных аномалий на основе сырых данных с датчиков, используя скрипты.</p>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
-                        <ul id="partner_name_2_tasks" class="space-y-1 text-sm text-gray-600">
-                            <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">▸</span>Обработать предоставленный массив данных</li>
-                            <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">▸</span>Выявить аномалии по заданным правилам и алгоритмам</li>
+                        <p id="t2_system_label" class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li id="t2_task1" class="flex items-start gap-2"><span class="text-green-500 mt-0.5">▸</span>Обработать предоставленный массив данных</li>
+                            <li id="t2_task2" class="flex items-start gap-2"><span class="text-green-500 mt-0.5">▸</span>Выявить аномалии по заданным правилам и алгоритмам</li>
                         </ul>
+                    </div>
+                    <div>
+                        <p id="t2_actually_label" class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Фактически решается задача</p>
+                        <p id="t2_actually_text" class="text-gray-700 leading-relaxed text-sm">Построения pipeline для фильтрации и программного анализа показаний датчиков.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-3 text-sm">
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
-                            <p class="text-gray-700 font-medium">CSV-файл с данными производственных датчиков</p>
+                            <p id="t2_input_label" class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p id="t2_input_text" class="text-gray-700 font-medium">CSV-файл с данными производственных датчиков</p>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
-                            <p class="text-gray-700 font-medium">Скрипт <strong>.py</strong> или <strong>.ipynb</strong> с pipeline</p>
+                            <p id="t2_req_label" class="text-xs text-gray-400 mb-1">Требования к решению</p>
+                            <p id="t2_req_text" class="text-gray-700 font-medium">Инструменты: Python (с использованием библиотеки pandas).</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p id="t2_format_label" class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p id="t2_format_text" class="text-gray-700 font-medium">Скрипт <strong>.py</strong> или <strong>.ipynb</strong> с pipeline</p>
                         </div>
                     </div>
                     <div class="mt-auto pt-2 border-t border-gray-100">
-                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <p id="t2_criteria_label" class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
                         <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full font-semibold">🗂 Обработка данных — 40%</span>
-                            <span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full font-semibold">🔍 Логика аномалий — 30%</span>
-                            <span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-semibold">📋 Вывод — 30%</span>
+                            <span id="t2_crit1" class="bg-green-50 text-green-700 px-3 py-1 rounded-full font-semibold">🗂 Обработка данных — 40%</span>
+                            <span id="t2_crit2" class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full font-semibold">🔍 Логика аномалий — 30%</span>
+                            <span id="t2_crit3" class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-semibold">📋 Вывод — 30%</span>
                         </div>
+                    </div>
+                    <div>
+                        <p id="partner_name_2_expected_result" class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Ожидаемый результат</p>
+                        <p id="partner_name_2_expected_result_description" class="text-gray-700 leading-relaxed text-sm">Воспроизводимый Python-скрипт, который очищает данные, применяет правила поиска аномалий и формирует отчет по отклонениям.</p>
                     </div>
                 </div>
             </div>
@@ -480,33 +504,45 @@
                 </div>
                 <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
                     <div>
-                        <p class="text-xs font-bold text-purple-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="t3_essence_label" class="text-xs font-bold text-purple-600 uppercase tracking-widest mb-1">Суть задачи</p>
                         <p id="partner_name_3_description" class="text-gray-700 leading-relaxed text-sm">Разработать и внедрить алгоритм машинного обучения для проактивного выявления дефектной продукции.</p>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
-                        <ul id="partner_name_3_tasks" class="space-y-1 text-sm text-gray-600">
-                            <li class="flex items-start gap-2"><span class="text-purple-500 mt-0.5">▸</span>Обучить модель ML для предсказания появления брака</li>
-                            <li class="flex items-start gap-2"><span class="text-purple-500 mt-0.5">▸</span>Провести анализ точности предсказаний</li>
+                        <p id="t3_system_label" class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li id="t3_task1" class="flex items-start gap-2"><span class="text-purple-500 mt-0.5">▸</span>Обучить модель ML для предсказания появления брака</li>
+                            <li id="t3_task2" class="flex items-start gap-2"><span class="text-purple-500 mt-0.5">▸</span>Провести анализ точности предсказаний</li>
                         </ul>
+                    </div>
+                    <div>
+                        <p id="t3_actually_label" class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Фактически решается задача</p>
+                        <p id="t3_actually_text" class="text-gray-700 leading-relaxed text-sm">Создания предиктивной ML-модели для классификации статуса продукции.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-3 text-sm">
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
-                            <p class="text-gray-700 font-medium">Исторические данные производственного процесса</p>
+                            <p id="t3_input_label" class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p id="t3_input_text" class="text-gray-700 font-medium">Исторические данные производственного процесса</p>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
-                            <p class="text-gray-700 font-medium">Код модели + веса <strong>.pkl</strong> + метрики</p>
+                            <p id="t3_req_label" class="text-xs text-gray-400 mb-1">Требования к решению</p>
+                            <p id="t3_req_text" class="text-gray-700 font-medium">Инструменты: Python + библиотека sklearn.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p id="t3_format_label" class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p id="t3_format_text" class="text-gray-700 font-medium">Код модели + веса <strong>.pkl</strong> + метрики</p>
                         </div>
                     </div>
                     <div class="mt-auto pt-2 border-t border-gray-100">
-                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <p id="t3_criteria_label" class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
                         <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full font-semibold">🏗 Архитектура — 40%</span>
-                            <span class="bg-violet-50 text-violet-700 px-3 py-1 rounded-full font-semibold">🎯 Точность — 30%</span>
-                            <span class="bg-fuchsia-50 text-fuchsia-700 px-3 py-1 rounded-full font-semibold">🔬 Анализ — 30%</span>
+                            <span id="t3_crit1" class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full font-semibold">🏗 Архитектура — 40%</span>
+                            <span id="t3_crit2" class="bg-violet-50 text-violet-700 px-3 py-1 rounded-full font-semibold">🎯 Точность — 30%</span>
+                            <span id="t3_crit3" class="bg-fuchsia-50 text-fuchsia-700 px-3 py-1 rounded-full font-semibold">🔬 Анализ — 30%</span>
                         </div>
+                    </div>
+                    <div>
+                        <p id="partner_name_3_expected_result" class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Ожидаемый результат</p>
+                        <p id="partner_name_3_expected_result_description" class="text-gray-700 leading-relaxed text-sm">Обученная ML-модель, способная предсказывать брак на новых данных с подтвержденной метриками точностью.</p>
                     </div>
                 </div>
             </div>
@@ -519,33 +555,45 @@
                 </div>
                 <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
                     <div>
-                        <p class="text-xs font-bold text-orange-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="t4_essence_label" class="text-xs font-bold text-orange-600 uppercase tracking-widest mb-1">Суть задачи</p>
                         <p id="partner_name_4_description" class="text-gray-700 leading-relaxed text-sm">Спроектировать аппаратно-программный комплекс для мониторинга состояния физического объекта в реальном времени.</p>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
-                        <ul id="partner_name_4_tasks" class="space-y-1 text-sm text-gray-600">
-                            <li class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">▸</span>Осуществлять мониторинг показателей в реальном времени</li>
-                            <li class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">▸</span>Генерировать сигнал тревоги при критических значениях</li>
+                        <p id="t4_system_label" class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li id="t4_task1" class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">▸</span>Осуществлять мониторинг показателей в реальном времени</li>
+                            <li id="t4_task2" class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">▸</span>Генерировать сигнал тревоги при критических значениях</li>
                         </ul>
+                    </div>
+                    <div>
+                        <p id="t4_actually_label" class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Фактически решается задача</p>
+                        <p id="t4_actually_text" class="text-gray-700 leading-relaxed text-sm">Построения связки "железо - софт" для реализации концепции Интернета вещей (IoT).</p>
                     </div>
                     <div class="grid grid-cols-2 gap-3 text-sm">
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
-                            <p class="text-gray-700 font-medium">Потоковые данные с микроконтроллера или эмулятора</p>
+                            <p id="t4_input_label" class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p id="t4_input_text" class="text-gray-700 font-medium">Потоковые данные с микроконтроллера или эмулятора</p>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
-                            <p class="text-gray-700 font-medium">Код C++/MicroPython + Python-сервер + демо</p>
+                            <p id="t4_req_label" class="text-xs text-gray-400 mb-1">Требования к решению</p>
+                            <p id="t4_req_text" class="text-gray-700 font-medium">Инструменты: ESP32 (или эмуляция) + язык Python.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p id="t4_format_label" class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p id="t4_format_text" class="text-gray-700 font-medium">Код C++/MicroPython + Python-сервер + демо</p>
                         </div>
                     </div>
                     <div class="mt-auto pt-2 border-t border-gray-100">
-                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <p id="t4_criteria_label" class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
                         <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full font-semibold">🏗 Архитектура — 40%</span>
-                            <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full font-semibold">⚙️ Реализация — 40%</span>
-                            <span class="bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full font-semibold">🎬 Демо — 20%</span>
+                            <span id="t4_crit1" class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full font-semibold">🏗 Архитектура — 40%</span>
+                            <span id="t4_crit2" class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full font-semibold">⚙️ Реализация — 40%</span>
+                            <span id="t4_crit3" class="bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full font-semibold">🎬 Демо — 20%</span>
                         </div>
+                    </div>
+                    <div>
+                        <p id="partner_name_4_expected_result" class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Ожидаемый результат</p>
+                        <p id="partner_name_4_expected_result_description" class="text-gray-700 leading-relaxed text-sm">Работающий прототип IoT-системы (физический или эмулированный), успешно считывающий данные и триггерящий тревогу по заданному условию.</p>
                     </div>
                 </div>
             </div>
@@ -558,33 +606,45 @@
                 </div>
                 <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
                     <div>
-                        <p class="text-xs font-bold text-teal-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="t5_essence_label" class="text-xs font-bold text-teal-600 uppercase tracking-widest mb-1">Суть задачи</p>
                         <p id="partner_name_5_description" class="text-gray-700 leading-relaxed text-sm">Создать виртуальную копию физической установки, синхронизированную с её процессами для визуализации и анализа.</p>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
-                        <ul id="partner_name_5_tasks" class="space-y-1 text-sm text-gray-600">
-                            <li class="flex items-start gap-2"><span class="text-teal-500 mt-0.5">▸</span>Симулировать работу физической установки</li>
-                            <li class="flex items-start gap-2"><span class="text-teal-500 mt-0.5">▸</span>Обеспечить наглядную визуализацию процессов в Grafana</li>
+                        <p id="t5_system_label" class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li id="t5_task1" class="flex items-start gap-2"><span class="text-teal-500 mt-0.5">▸</span>Симулировать работу физической установки</li>
+                            <li id="t5_task2" class="flex items-start gap-2"><span class="text-teal-500 mt-0.5">▸</span>Обеспечить наглядную визуализацию процессов в Grafana</li>
                         </ul>
+                    </div>
+                    <div>
+                        <p id="t5_actually_label" class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Фактически решается задача</p>
+                        <p id="t5_actually_text" class="text-gray-700 leading-relaxed text-sm">Разработки математической/логической симуляции и интеграции её с профессиональными инструментами мониторинга.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-3 text-sm">
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
-                            <p class="text-gray-700 font-medium">Параметры физической модели (задаются программно)</p>
+                            <p id="t5_input_label" class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p id="t5_input_text" class="text-gray-700 font-medium">Параметры физической модели (задаются программно)</p>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
-                            <p class="text-gray-700 font-medium">Дашборд Grafana + Python-скрипт источника данных</p>
+                            <p id="t5_req_label" class="text-xs text-gray-400 mb-1">Требования к решению</p>
+                            <p id="t5_req_text" class="text-gray-700 font-medium">Инструменты: Python (для логики) / Grafana (для визуализации).</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p id="t5_format_label" class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p id="t5_format_text" class="text-gray-700 font-medium">Дашборд Grafana + Python-скрипт источника данных</p>
                         </div>
                     </div>
                     <div class="mt-auto pt-2 border-t border-gray-100">
-                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <p id="t5_criteria_label" class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
                         <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full font-semibold">🧮 Симуляция — 40%</span>
-                            <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full font-semibold">📈 Grafana — 30%</span>
-                            <span class="bg-sky-50 text-sky-700 px-3 py-1 rounded-full font-semibold">🔁 Логика — 30%</span>
+                            <span id="t5_crit1" class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full font-semibold">🧮 Симуляция — 40%</span>
+                            <span id="t5_crit2" class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full font-semibold">📈 Grafana — 30%</span>
+                            <span id="t5_crit3" class="bg-sky-50 text-sky-700 px-3 py-1 rounded-full font-semibold">🔁 Логика — 30%</span>
                         </div>
+                    </div>
+                    <div>
+                        <p id="partner_name_5_expected_result" class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Ожидаемый результат</p>
+                        <p id="partner_name_5_expected_result_description" class="text-gray-700 leading-relaxed text-sm">Полноценный интерактивный дашборд цифрового двойника, отображающий состояние симулируемой установки в реальном времени.</p>
                     </div>
                 </div>
             </div>
@@ -597,33 +657,45 @@
                 </div>
                 <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
                     <div>
-                        <p class="text-xs font-bold text-red-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="t6_essence_label" class="text-xs font-bold text-red-600 uppercase tracking-widest mb-1">Суть задачи</p>
                         <p id="partner_name_6_description" class="text-gray-700 leading-relaxed text-sm">Разработать автономную интеллектуальную систему, способную не только анализировать, но и принимать решения по управлению сложным процессом.</p>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
-                        <ul id="partner_name_6_tasks" class="space-y-1 text-sm text-gray-600">
-                            <li class="flex items-start gap-2"><span class="text-red-500 mt-0.5">▸</span>Предсказывать дальнейшее поведение процесса</li>
-                            <li class="flex items-start gap-2"><span class="text-red-500 mt-0.5">▸</span>Автоматически управлять процессом на основе предсказаний</li>
+                        <p id="t6_system_label" class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li id="t6_task1" class="flex items-start gap-2"><span class="text-red-500 mt-0.5">▸</span>Предсказывать дальнейшее поведение процесса</li>
+                            <li id="t6_task2" class="flex items-start gap-2"><span class="text-red-500 mt-0.5">▸</span>Автоматически управлять процессом на основе предсказаний</li>
                         </ul>
+                    </div>
+                    <div>
+                        <p id="t6_actually_label" class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Фактически решается задача</p>
+                        <p id="t6_actually_text" class="text-gray-700 leading-relaxed text-sm">Внедрения передовых алгоритмов искусственного интеллекта для создания замкнутого цикла управления без участия человека.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-3 text-sm">
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
-                            <p class="text-gray-700 font-medium">Динамические данные среды/процесса в реальном времени</p>
+                            <p id="t6_input_label" class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p id="t6_input_text" class="text-gray-700 font-medium">Динамические данные среды/процесса в реальном времени</p>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-3">
-                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
-                            <p class="text-gray-700 font-medium">AI-агент + документация + результаты тестирования</p>
+                            <p id="t6_req_label" class="text-xs text-gray-400 mb-1">Требования к решению</p>
+                            <p id="t6_req_text" class="text-gray-700 font-medium">Инструменты: Machine Learning (ML) / Reinforcement Learning (RL).</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p id="t6_format_label" class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p id="t6_format_text" class="text-gray-700 font-medium">AI-агент + документация + результаты тестирования</p>
                         </div>
                     </div>
                     <div class="mt-auto pt-2 border-t border-gray-100">
-                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <p id="t6_criteria_label" class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
                         <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full font-semibold">💡 Концепт — 40%</span>
-                            <span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-full font-semibold">⚙️ Реализация — 30%</span>
-                            <span class="bg-pink-50 text-pink-700 px-3 py-1 rounded-full font-semibold">🚀 Новизна — 30%</span>
+                            <span id="t6_crit1" class="bg-red-50 text-red-700 px-3 py-1 rounded-full font-semibold">💡 Концепт — 40%</span>
+                            <span id="t6_crit2" class="bg-rose-50 text-rose-700 px-3 py-1 rounded-full font-semibold">⚙️ Реализация — 30%</span>
+                            <span id="t6_crit3" class="bg-pink-50 text-pink-700 px-3 py-1 rounded-full font-semibold">🚀 Новизна — 30%</span>
                         </div>
+                    </div>
+                    <div>
+                        <p id="partner_name_6_expected_result" class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Ожидаемый результат</p>
+                        <p id="partner_name_6_expected_result_description" class="text-gray-700 leading-relaxed text-sm">Инновационная система предиктивного управления, демонстрирующая способность агента самостоятельно оптимизировать или корректировать заданный процесс с использованием методов RL/ML.</p>
                     </div>
                 </div>
             </div>
@@ -896,7 +968,7 @@
 <footer class="bg-blue-950 text-white pt-16 pb-8">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-12 mb-8">
         <div class="col-span-1 lg:col-span-1">
-            <h2 class="text-3xl font-black mb-6">ATU IT Battle</h2>
+            <h2 class="text-3xl font-black mb-6">ATU & KazNU</h2>
             <p id="footer-desc" class="text-blue-200/70 text-sm leading-relaxed">
                 AI және цифрлық инновациялар сайысы. Идеядан prototype-ке дейін.
             </p>
@@ -930,13 +1002,13 @@
         <div>
             <h4 id="footer-legal-title" class="font-bold mb-6 text-blue-400 uppercase text-sm tracking-widest">Ақпарат</h4>
             <p id="footer-legal-text" class="text-xs text-blue-100/50 flex items-center">
-                <i class="far fa-file-lines mr-2"></i> ATU IT Battle
+                <i class="far fa-file-lines mr-2"></i> ATU & KazNU AI
             </p>
         </div>
     </div>
 
     <div id="footer-copy" class="text-center text-blue-100/30 text-[10px] md:text-xs">
-        © 2026 Almaty Technological University. ATU IT Battle.
+        © 2026 ATU & KazNU AI Hackathon. ATU & KazNU AI.
     </div>
 
     <div class="text-center text-[10px] text-blue-100/10 mt-2">
@@ -957,9 +1029,9 @@
                 navRegister: "Қатысу",
                 registerTime: "Тіркеу",
 
-                heroBadge: "Almaty Technological University",
-                heroTitle: "«ATU IT Battle» <br><span class='text-blue-200'>цифрлық шешімдер сайысы</span>",
-                heroSubtitle: "Жасанды интеллектпен идеяңды іске асыр – ATU IT Battle-де жеңіске жет! Бас жүлде – 300 000 теңге!",
+                heroBadge: "ATU & KazNU AI Hackathon",
+                heroTitle: '«ATU & KazNU AI Hackathon» цифрлық шешімдер сайысы<br /><span class="text-blue-200 text-[14px] md:text-[18px] font-normal">Ұйымдастырушылар: Алматы технологиялық университеті (АТУ) және Әл-Фараби атындағы Қазақ ұлттық университеті (ҚазҰУ).</span>',
+                heroSubtitle: "Демеуші: China Computer Federation (CCF).",
                 heroDateLabel: "Іс-шара ұзақтығы",
                 heroDateValue: "2 күн",
                 heroPrizeLabel: "Бас жүлде",
@@ -967,7 +1039,7 @@
                 heroRegister: "Қатысу",
 
                 aboutTitle: "Сайыс туралы",
-                aboutText: "«ATU IT Battle» цифрлық шешімдер сайысының мақсаты – тағам өндірісі, қаржы саласы, мейрамхана бизнесі, туризм және қызмет көрсету индустриясындағы өзекті мәселелерді шешуге бағытталған заманауи цифрлық және жасанды интеллектке негізделген IT-шешімдерді әзірлеу, білім алушылардың инновациялық ойлау қабілетін дамыту және олардың тәжірибелік құзыреттіліктерін жетілдіру.",
+                aboutText: "«ATU & KazNU AI» цифрлық шешімдер сайысының мақсаты – тағам өндірісі, қаржы саласы, мейрамхана бизнесі, туризм және қызмет көрсету индустриясындағы өзекті мәселелерді шешуге бағытталған заманауи цифрлық және жасанды интеллектке негізделген IT-шешімдерді әзірлеу, білім алушылардың инновациялық ойлау қабілетін дамыту және олардың тәжірибелік құзыреттіліктерін жетілдіру.",
 
                 winnersTitle: "Жеңімпаздар",
 
@@ -984,6 +1056,7 @@
                 goal5: "IT саласында қолданбалы, бәсекеге қабілетті шешімдер әзірлеуге жағдай жасау",
 
                 infoTitle: "Тапсырмалар",
+                or: "немесе",
                 partner_name_1: "1-тапсырма: Ақылды сапа бақылауы",
                 partner_name_1_description: "Өнімнің сапасын бақылау мақсатында өндірістік көрсеткіштерді базалық талдауға арналған құрал әзірлеу.",
                 partner_name_2: "2-тапсырма: Өндіріс желісін талдау",
@@ -996,6 +1069,132 @@
                 partner_name_5_description: "Визуализация және талдау үшін физикалық қондырғының процестерімен синхрондалған виртуалды көшірмесін жасау.",
                 partner_name_6: "6-тапсырма: Болжамды басқару",
                 partner_name_6_description: "Күрделі процесті талдап қана қоймай, оны басқару бойынша шешімдер қабылдай алатын автономды интеллектуалды жүйе әзірлеу.",
+
+                // task 1 details
+                t1_actually_label: "Іс жүзінде шешілетін мәселе",
+                t1_actually_text: "Сапаны бағалауға арналған алғашқы дашборд пен есептеу моделін құру.",
+                t1_req_label: "Шешімге қойылатын талаптар",
+                t1_req_text: "Құралдар: Python, Jupyter Notebook.",
+                t1_format_label: "Нәтиже форматы",
+                t1_format_text: "Деректерді өңдеу логикасы мен нәтижелерді шығаратын .py немесе Jupyter Notebook .ipynb скрипті.",
+                partner_name_1_essence_exercise: "Тапсырманың мәні",
+                partner_name_1_system_exercise: "Жүйенің міндеті",
+                partner_name_1_essence_exercise_1: "▸ Өндірістік параметрлердегі ауытқуларды анықтау",
+                partner_name_1_essence_exercise_2: "▸ Ақаулы өнімнің пайызын есептеу",
+                partner_name_1_essence_exercise_3: "▸ Талдауға арналған көрнекі графиктер тұрғызу",
+                partner_name_1_input_data: "Кіріс деректері",
+                partner_name_1_table: "Кесте: температура, ылғалдылық, уақыт, күй",
+                partner_name_1_result_format: "Нәтиже форматы",
+                partner_name_1_file: "Файл",
+                or: "немесе",
+                partner_name_1_dashboard: "дашбордпен",
+                partner_name_1_evaluation_criteria: "Бағалау критерийлері",
+                partner_name_1_calculations: "✅ Есептеулер — 40%",
+                partner_name_1_visualization: "📊 Визуализация — 30%",
+                partner_name_1_conclusions: "💡 Қорытынды — 30%",
+                partner_name_1_expected_result: "Күтілетін нәтиже",
+                partner_name_1_expected_result_description: "Енгізілген параметрлер негізінде ақаулар метрикасын автоматты есептеп, ауытқуларды визуализациялайтын дайын Python-файл (.py, .ipynb).",
+
+                // task 2 details
+                t2_essence_label: "Тапсырманың мәні",
+                t2_system_label: "Жүйенің міндеті",
+                t2_task1: "▸ Берілген деректер жиынын өңдеу",
+                t2_task2: "▸ Белгіленген ережелер мен алгоритмдер бойынша аномалияларды анықтау",
+                t2_actually_label: "Іс жүзінде шешілетін мәселе",
+                t2_actually_text: "Датчик көрсеткіштерін сүзу және бағдарламалық талдауға арналған pipeline құру.",
+                t2_input_label: "Кіріс деректері",
+                t2_input_text: "Өндірістік датчиктердің деректері бар CSV-файл",
+                t2_req_label: "Шешімге қойылатын талаптар",
+                t2_req_text: "Құралдар: Python (pandas кітапханасымен).",
+                t2_format_label: "Нәтиже форматы",
+                t2_format_text: "Pipeline бар .py немесе .ipynb скрипті",
+                t2_criteria_label: "Бағалау критерийлері",
+                t2_crit1: "🗂 Деректерді өңдеу — 40%",
+                t2_crit2: "🔍 Аномалия логикасы — 30%",
+                t2_crit3: "📋 Қорытынды — 30%",
+                partner_name_2_expected_result: "Күтілетін нәтиже",
+                partner_name_2_expected_result_description: "Деректерді тазалайтын, аномалия іздеу ережелерін қолданатын және ауытқулар есебін жасайтын қайта шығарылатын Python-скрипт.",
+
+                // task 3 details
+                t3_essence_label: "Тапсырманың мәні",
+                t3_system_label: "Жүйенің міндеті",
+                t3_task1: "▸ Ақаулардың пайда болуын болжау үшін ML моделін оқыту",
+                t3_task2: "▸ Болжам дәлдігін талдау",
+                t3_actually_label: "Іс жүзінде шешілетін мәселе",
+                t3_actually_text: "Өнім күйін классификациялауға арналған болжамды ML-модель жасау.",
+                t3_input_label: "Кіріс деректері",
+                t3_input_text: "Өндіріс процесінің тарихи деректері",
+                t3_req_label: "Шешімге қойылатын талаптар",
+                t3_req_text: "Құралдар: Python + sklearn кітапханасы.",
+                t3_format_label: "Нәтиже форматы",
+                t3_format_text: "Модель коды + .pkl салмақтары + метрикалар",
+                t3_criteria_label: "Бағалау критерийлері",
+                t3_crit1: "🏗 Архитектура — 40%",
+                t3_crit2: "🎯 Дәлдік — 30%",
+                t3_crit3: "🔬 Талдау — 30%",
+                partner_name_3_expected_result: "Күтілетін нәтиже",
+                partner_name_3_expected_result_description: "Метрикамен расталған дәлдікпен жаңа деректерде ақауды болжай алатын оқытылған ML-модель.",
+
+                // task 4 details
+                t4_essence_label: "Тапсырманың мәні",
+                t4_system_label: "Жүйенің міндеті",
+                t4_task1: "▸ Көрсеткіштерді нақты уақытта бақылау",
+                t4_task2: "▸ Критикалық мәндерде дабыл сигналын генерациялау",
+                t4_actually_label: "Іс жүзінде шешілетін мәселе",
+                t4_actually_text: "Заттар интернеті (IoT) концепциясын іске асыру үшін «жабдық – бағдарламалық жасақтама» байланысын құру.",
+                t4_input_label: "Кіріс деректері",
+                t4_input_text: "Микроконтроллер немесе эмулятордан ағынды деректер",
+                t4_req_label: "Шешімге қойылатын талаптар",
+                t4_req_text: "Құралдар: ESP32 (немесе эмуляция) + Python тілі.",
+                t4_format_label: "Нәтиже форматы",
+                t4_format_text: "C++/MicroPython коды + Python-сервер + демо",
+                t4_criteria_label: "Бағалау критерийлері",
+                t4_crit1: "🏗 Архитектура — 40%",
+                t4_crit2: "⚙️ Іске асыру — 40%",
+                t4_crit3: "🎬 Демо — 20%",
+                partner_name_4_expected_result: "Күтілетін нәтиже",
+                partner_name_4_expected_result_description: "Деректерді сәтті оқитын және берілген шартқа дабыл беретін жұмыс істейтін IoT-жүйесінің прототипі (физикалық немесе эмуляцияланған).",
+
+                // task 5 details
+                t5_essence_label: "Тапсырманың мәні",
+                t5_system_label: "Жүйенің міндеті",
+                t5_task1: "▸ Физикалық қондырғының жұмысын симуляциялау",
+                t5_task2: "▸ Grafana-да процестерді көрнекі визуализациялауды қамтамасыз ету",
+                t5_actually_label: "Іс жүзінде шешілетін мәселе",
+                t5_actually_text: "Математикалық/логикалық симуляция әзірлеу және оны кәсіби мониторинг құралдарымен интеграциялау.",
+                t5_input_label: "Кіріс деректері",
+                t5_input_text: "Физикалық модельдің параметрлері (бағдарламалық түрде беріледі)",
+                t5_req_label: "Шешімге қойылатын талаптар",
+                t5_req_text: "Құралдар: Python (логика үшін) / Grafana (визуализация үшін).",
+                t5_format_label: "Нәтиже форматы",
+                t5_format_text: "Grafana дашборды + Python деректер көзі скрипті",
+                t5_criteria_label: "Бағалау критерийлері",
+                t5_crit1: "🧮 Симуляция — 40%",
+                t5_crit2: "📈 Grafana — 30%",
+                t5_crit3: "🔁 Логика — 30%",
+                partner_name_5_expected_result: "Күтілетін нәтиже",
+                partner_name_5_expected_result_description: "Симуляцияланған қондырғының күйін нақты уақытта көрсететін толыққанды интерактивті цифрлық егіз дашборды.",
+
+                // task 6 details
+                t6_essence_label: "Тапсырманың мәні",
+                t6_system_label: "Жүйенің міндеті",
+                t6_task1: "▸ Процестің одан әрі жүрісін болжау",
+                t6_task2: "▸ Болжамдар негізінде процесті автоматты басқару",
+                t6_actually_label: "Іс жүзінде шешілетін мәселе",
+                t6_actually_text: "Адамның қатысуынсыз тұйық басқару циклін жасауға арналған жетілдірілген AI алгоритмдерін енгізу.",
+                t6_input_label: "Кіріс деректері",
+                t6_input_text: "Нақты уақытта орта/процестің динамикалық деректері",
+                t6_req_label: "Шешімге қойылатын талаптар",
+                t6_req_text: "Құралдар: Machine Learning (ML) / Reinforcement Learning (RL).",
+                t6_format_label: "Нәтиже форматы",
+                t6_format_text: "AI-агент + құжаттама + тестілеу нәтижелері",
+                t6_criteria_label: "Бағалау критерийлері",
+                t6_crit1: "💡 Концепт — 40%",
+                t6_crit2: "⚙️ Іске асыру — 30%",
+                t6_crit3: "🚀 Жаңалық — 30%",
+                partner_name_6_expected_result: "Күтілетін нәтиже",
+                partner_name_6_expected_result_description: "RL/ML әдістерін қолдана отырып берілген процесті өздігінен оңтайландыра немесе түзете алатын агент қабілетін көрсететін инновациялық болжамды басқару жүйесі.",
+
 <!--                participantsTitle: "Қатысушылар",-->
 <!--                participantsText: "Қазақстан Республикасы жоғары оқу орындарының студенттері.",-->
 <!--                juryTitle: "Қазылар алқасы",-->
@@ -1016,7 +1215,7 @@
                 formatText: "Сайыс оффлайн режимде өтеді. Қатысушыларды қарқынды командалық жұмыс, менторлық қолдау және жобаларды тікелей қорғау күтеді.",
                 placeAddress: "ATU кампусы, Алматы, Фурқат көшесі, 348/4",
                 placeDuration: "2 күндік бағдарлама",
-                placeBoxTitle: "ATU IT Battle",
+                placeBoxTitle: "ATU & KazNU AI",
                 placeBoxText: "AI, цифрлық өнімдер, командалық жарыс, pitch және инновация",
 
                 programTitle: "Сайыс бағдарламасы",
@@ -1054,8 +1253,8 @@
                 footerNavTitle: "Навигация",
                 footerContactTitle: "Байланыс",
                 footerLegalTitle: "Ақпарат",
-                footerLegalText: "ATU IT Battle",
-                footerCopy: "© 2026 Almaty Technological University. ATU IT Battle."
+                footerLegalText: "ATU & KazNU AI",
+                footerCopy: "© 2026 ATU & KazNU AI Hackathon. ATU & KazNU AI."
             },
 
             ru: {
@@ -1070,9 +1269,9 @@
                 navRegister: "Участвовать",
                 registerTime: "Регистрация",
 
-                heroBadge: "Almaty Technological University",
-                heroTitle: "«ATU IT Battle» <br><span class='text-blue-200'>соревнование цифровых решений</span>",
-                heroSubtitle: "Реализуй свою идею с искусственным интеллектом и побеждай в ATU IT Battle! Главный приз — 300 000 тенге!",
+                heroBadge: "ATU & KazNU AI Hackathon",
+                heroTitle: '«ATU & KazNU AI Hackathon» конкурс цифровых решений<br /><span class="text-blue-200 text-[14px] md:text-[18px] font-normal">Организаторы: Алматинский технологический университет (АТУ) и Казахский национальный университет им. Аль-Фараби (КазНУ).</span>',
+                heroSubtitle: "Спонсор: China Computer Federation (CCF).",
                 heroDateLabel: "Длительность",
                 heroDateValue: "2 дня",
                 heroPrizeLabel: "Главный приз",
@@ -1080,7 +1279,7 @@
                 heroRegister: "Участвовать",
 
                 aboutTitle: "О соревновании",
-                aboutText: "Цель соревнования цифровых решений «ATU IT Battle» — разработка современных цифровых и основанных на искусственном интеллекте IT-решений, направленных на решение актуальных задач в пищевом производстве, финансовой сфере, ресторанном бизнесе, туризме и индустрии услуг, а также развитие инновационного мышления и практических компетенций обучающихся.",
+                aboutText: "Цель соревнования цифровых решений «ATU & KazNU AI» — разработка современных цифровых и основанных на искусственном интеллекте IT-решений, направленных на решение актуальных задач в пищевом производстве, финансовой сфере, ресторанном бизнесе, туризме и индустрии услуг, а также развитие инновационного мышления и практических компетенций обучающихся.",
 
                 winnersTitle: "Победители",
 
@@ -1096,7 +1295,8 @@
                 goal4: "Развитие навыков командной работы, проектного менеджмента и креативного мышления",
                 goal5: "Создание условий для разработки прикладных и конкурентоспособных IT-решений",
 
-                infoTitle: "Задания от партнеров",
+                infoTitle: "Задание",
+                or: "или",
                 partner_name_1: "Задание 1: Умный контроль качества",
                 partner_name_1_description: "Разработать инструмент для базового анализа производственных показателей с целью контроля качества продукции.",
                 partner_name_2: "Задание 2: Анализ производственной линии",
@@ -1109,6 +1309,132 @@
                 partner_name_5_description: "Создать виртуальную копию физической установки, синхронизированную с её процессами для визуализации и анализа.",
                 partner_name_6: "Задание 6: Предиктивное управление",
                 partner_name_6_description: "Разработать автономную интеллектуальную систему, способную не только анализировать, но и принимать решения по управлению сложным процессом.",
+
+                // task 1 details
+                t1_actually_label: "Фактически решается задача",
+                t1_actually_text: "Построения первичного дашборда и расчетной модели для оценки качества.",
+                t1_req_label: "Требования к решению",
+                t1_req_text: "Инструменты: Python, Jupyter Notebook.",
+                t1_format_label: "Формат результата",
+                t1_format_text: "Скрипт .py или Jupyter Notebook .ipynb с логикой обработки данных и выводом результатов.",
+                partner_name_1_essence_exercise: "Суть задачи",
+                partner_name_1_system_exercise: "Задача системы",
+                partner_name_1_essence_exercise_1: "▸ Найти отклонения в производственных параметрах",
+                partner_name_1_essence_exercise_2: "▸ Посчитать процент бракованной продукции",
+                partner_name_1_essence_exercise_3: "▸ Построить наглядные графики для анализа",
+                partner_name_1_input_data: "Входные данные",
+                partner_name_1_table: "Таблица: температура, влажность, время, статус",
+                partner_name_1_result_format: "Формат результата",
+                partner_name_1_file: "Файл",
+                or: "или",
+                partner_name_1_dashboard: "с дашбордом",
+                partner_name_1_evaluation_criteria: "Критерии оценки",
+                partner_name_1_calculations: "✅ Расчёты — 40%",
+                partner_name_1_visualization: "📊 Визуализация — 30%",
+                partner_name_1_conclusions: "💡 Выводы — 30%",
+                partner_name_1_expected_result: "Ожидаемый результат",
+                partner_name_1_expected_result_description: "Готовый Python-файл (.py, .ipynb), способный на основе введенных параметров автоматически рассчитывать метрики брака и визуализировать отклонения.",
+
+                // task 2 details
+                t2_essence_label: "Суть задачи",
+                t2_system_label: "Задача системы",
+                t2_task1: "▸ Обработать предоставленный массив данных",
+                t2_task2: "▸ Выявить аномалии по заданным правилам и алгоритмам",
+                t2_actually_label: "Фактически решается задача",
+                t2_actually_text: "Построения pipeline для фильтрации и программного анализа показаний датчиков.",
+                t2_input_label: "Входные данные",
+                t2_input_text: "CSV-файл с данными производственных датчиков",
+                t2_req_label: "Требования к решению",
+                t2_req_text: "Инструменты: Python (с использованием библиотеки pandas).",
+                t2_format_label: "Формат результата",
+                t2_format_text: "Скрипт .py или .ipynb с pipeline",
+                t2_criteria_label: "Критерии оценки",
+                t2_crit1: "🗂 Обработка данных — 40%",
+                t2_crit2: "🔍 Логика аномалий — 30%",
+                t2_crit3: "📋 Вывод — 30%",
+                partner_name_2_expected_result: "Ожидаемый результат",
+                partner_name_2_expected_result_description: "Воспроизводимый Python-скрипт, который очищает данные, применяет правила поиска аномалий и формирует отчет по отклонениям.",
+
+                // task 3 details
+                t3_essence_label: "Суть задачи",
+                t3_system_label: "Задача системы",
+                t3_task1: "▸ Обучить модель ML для предсказания появления брака",
+                t3_task2: "▸ Провести анализ точности предсказаний",
+                t3_actually_label: "Фактически решается задача",
+                t3_actually_text: "Создания предиктивной ML-модели для классификации статуса продукции.",
+                t3_input_label: "Входные данные",
+                t3_input_text: "Исторические данные производственного процесса",
+                t3_req_label: "Требования к решению",
+                t3_req_text: "Инструменты: Python + библиотека sklearn.",
+                t3_format_label: "Формат результата",
+                t3_format_text: "Код модели + веса .pkl + метрики",
+                t3_criteria_label: "Критерии оценки",
+                t3_crit1: "🏗 Архитектура — 40%",
+                t3_crit2: "🎯 Точность — 30%",
+                t3_crit3: "🔬 Анализ — 30%",
+                partner_name_3_expected_result: "Ожидаемый результат",
+                partner_name_3_expected_result_description: "Обученная ML-модель, способная предсказывать брак на новых данных с подтвержденной метриками точностью.",
+
+                // task 4 details
+                t4_essence_label: "Суть задачи",
+                t4_system_label: "Задача системы",
+                t4_task1: "▸ Осуществлять мониторинг показателей в реальном времени",
+                t4_task2: "▸ Генерировать сигнал тревоги при критических значениях",
+                t4_actually_label: "Фактически решается задача",
+                t4_actually_text: "Построения связки «железо — софт» для реализации концепции Интернета вещей (IoT).",
+                t4_input_label: "Входные данные",
+                t4_input_text: "Потоковые данные с микроконтроллера или эмулятора",
+                t4_req_label: "Требования к решению",
+                t4_req_text: "Инструменты: ESP32 (или эмуляция) + язык Python.",
+                t4_format_label: "Формат результата",
+                t4_format_text: "Код C++/MicroPython + Python-сервер + демо",
+                t4_criteria_label: "Критерии оценки",
+                t4_crit1: "🏗 Архитектура — 40%",
+                t4_crit2: "⚙️ Реализация — 40%",
+                t4_crit3: "🎬 Демо — 20%",
+                partner_name_4_expected_result: "Ожидаемый результат",
+                partner_name_4_expected_result_description: "Работающий прототип IoT-системы (физический или эмулированный), успешно считывающий данные и генерирующий тревогу по заданному условию.",
+
+                // task 5 details
+                t5_essence_label: "Суть задачи",
+                t5_system_label: "Задача системы",
+                t5_task1: "▸ Симулировать работу физической установки",
+                t5_task2: "▸ Обеспечить наглядную визуализацию процессов в Grafana",
+                t5_actually_label: "Фактически решается задача",
+                t5_actually_text: "Разработки математической/логической симуляции и интеграции её с профессиональными инструментами мониторинга.",
+                t5_input_label: "Входные данные",
+                t5_input_text: "Параметры физической модели (задаются программно)",
+                t5_req_label: "Требования к решению",
+                t5_req_text: "Инструменты: Python (для логики) / Grafana (для визуализации).",
+                t5_format_label: "Формат результата",
+                t5_format_text: "Дашборд Grafana + Python-скрипт источника данных",
+                t5_criteria_label: "Критерии оценки",
+                t5_crit1: "🧮 Симуляция — 40%",
+                t5_crit2: "📈 Grafana — 30%",
+                t5_crit3: "🔁 Логика — 30%",
+                partner_name_5_expected_result: "Ожидаемый результат",
+                partner_name_5_expected_result_description: "Полноценный интерактивный дашборд цифрового двойника, отображающий состояние симулируемой установки в реальном времени.",
+
+                // task 6 details
+                t6_essence_label: "Суть задачи",
+                t6_system_label: "Задача системы",
+                t6_task1: "▸ Предсказывать дальнейшее поведение процесса",
+                t6_task2: "▸ Автоматически управлять процессом на основе предсказаний",
+                t6_actually_label: "Фактически решается задача",
+                t6_actually_text: "Внедрения передовых алгоритмов ИИ для создания замкнутого цикла управления без участия человека.",
+                t6_input_label: "Входные данные",
+                t6_input_text: "Динамические данные среды/процесса в реальном времени",
+                t6_req_label: "Требования к решению",
+                t6_req_text: "Инструменты: Machine Learning (ML) / Reinforcement Learning (RL).",
+                t6_format_label: "Формат результата",
+                t6_format_text: "AI-агент + документация + результаты тестирования",
+                t6_criteria_label: "Критерии оценки",
+                t6_crit1: "💡 Концепт — 40%",
+                t6_crit2: "⚙️ Реализация — 30%",
+                t6_crit3: "🚀 Новизна — 30%",
+                partner_name_6_expected_result: "Ожидаемый результат",
+                partner_name_6_expected_result_description: "Инновационная система предиктивного управления, демонстрирующая способность агента самостоятельно оптимизировать или корректировать заданный процесс с использованием методов RL/ML.",
+
 <!--                participantsTitle: "Участники",-->
 <!--                participantsText: "Студенты высших учебных заведений Республики Казахстан.",-->
 <!--                juryTitle: "Жюри",-->
@@ -1129,7 +1455,7 @@
                 formatText: "Соревнование проходит в оффлайн-режиме. Участников ждут интенсивная командная работа, менторская поддержка и очная защита проектов.",
                 placeAddress: "Кампус ATU, Алматы, Улица Фурката, 348/4",
                 placeDuration: "2-дневная программа",
-                placeBoxTitle: "ATU IT Battle",
+                placeBoxTitle: "ATU & KazNU AI",
                 placeBoxText: "AI, цифровые продукты, командное соревнование, pitch и инновации",
 
                 programTitle: "Программа соревнования",
@@ -1167,8 +1493,8 @@
                 footerNavTitle: "Навигация",
                 footerContactTitle: "Контакты",
                 footerLegalTitle: "Информация",
-                footerLegalText: "ATU IT Battle",
-                footerCopy: "© 2026 Almaty Technological University. ATU IT Battle."
+                footerLegalText: "ATU & KazNU AI",
+                footerCopy: "© 2026 ATU & KazNU AI Hackathon. ATU & KazNU AI."
             },
 
             en: {
@@ -1184,9 +1510,9 @@
                 registerTime: "Registration",
 
 
-                heroBadge: "Almaty Technological University",
-                heroTitle: "“ATU IT Battle” <br><span class='text-blue-200'>digital solutions competition</span>",
-                heroSubtitle: "Turn your idea into reality with artificial intelligence and win at ATU IT Battle! Grand prize — 300,000 KZT!",
+                heroBadge: "ATU & KazNU AI Hackathon",
+                heroTitle: '«ATU & KazNU AI Hackathon» Digital Solutions competition<br /><span class="text-blue-200 text-lg md:text-xl font-normal">Organizers: ATU & KazNU AI Hackathon (ATU) and Al-Farabi Kazakh National University (KazNU).</span>',
+                heroSubtitle: "Sponsor: China Computer Federation (CCF).",
                 heroDateLabel: "Duration",
                 heroDateValue: "2 days",
                 heroPrizeLabel: "Grand Prize",
@@ -1194,7 +1520,7 @@
                 heroRegister: "Join",
 
                 aboutTitle: "About the Competition",
-                aboutText: "The goal of the “ATU IT Battle” digital solutions competition is to develop modern digital and AI-based IT solutions aimed at solving pressing challenges in food production, finance, restaurant business, tourism, and the service industry, while also improving students’ innovative thinking and practical competencies.",
+                aboutText: "The goal of the “ATU & KazNU AI” digital solutions competition is to develop modern digital and AI-based IT solutions aimed at solving pressing challenges in food production, finance, restaurant business, tourism, and the service industry, while also improving students’ innovative thinking and practical competencies.",
 
                 winnersTitle: "Winners",
 
@@ -1211,6 +1537,7 @@
                 goal5: "Create conditions for applied and competitive IT solutions",
 
                 infoTitle: "Assignments",
+                or: "or",
                 partner_name_1: "Task 1: Smart Quality Control",
                 partner_name_1_description: "Develop a tool for basic analysis of production metrics for the purpose of quality control.",
                 partner_name_2: "Task 2: Production Line Analysis",
@@ -1223,6 +1550,132 @@
                 partner_name_5_description: "Create a virtual copy of a physical installation, synchronized with its processes for visualization and analysis.",
                 partner_name_6: "Task 6: Predictive Control",
                 partner_name_6_description: "Develop an autonomous intelligent system capable of not only analyzing, but also making decisions to manage a complex process.",
+
+                // task 1 details
+                t1_actually_label: "Problem actually solved",
+                t1_actually_text: "Building a primary dashboard and calculation model for quality assessment.",
+                t1_req_label: "Solution requirements",
+                t1_req_text: "Tools: Python, Jupyter Notebook.",
+                t1_format_label: "Result format",
+                t1_format_text: "A .py script or Jupyter Notebook .ipynb with data processing logic and result output.",
+                partner_name_1_essence_exercise: "Task essence",
+                partner_name_1_system_exercise: "System objective",
+                partner_name_1_essence_exercise_1: "▸ Detect deviations in production parameters",
+                partner_name_1_essence_exercise_2: "▸ Calculate the defect rate percentage",
+                partner_name_1_essence_exercise_3: "▸ Build clear charts for analysis",
+                partner_name_1_input_data: "Input data",
+                partner_name_1_table: "Table: temperature, humidity, time, status",
+                partner_name_1_result_format: "Result format",
+                partner_name_1_file: "File",
+                or: "or",
+                partner_name_1_dashboard: "with dashboard",
+                partner_name_1_evaluation_criteria: "Evaluation criteria",
+                partner_name_1_calculations: "✅ Calculations — 40%",
+                partner_name_1_visualization: "📊 Visualization — 30%",
+                partner_name_1_conclusions: "💡 Conclusions — 30%",
+                partner_name_1_expected_result: "Expected result",
+                partner_name_1_expected_result_description: "A ready Python file (.py, .ipynb) that automatically calculates defect metrics and visualizes deviations based on input parameters.",
+
+                // task 2 details
+                t2_essence_label: "Task essence",
+                t2_system_label: "System objective",
+                t2_task1: "▸ Process the provided dataset",
+                t2_task2: "▸ Detect anomalies using defined rules and algorithms",
+                t2_actually_label: "Problem actually solved",
+                t2_actually_text: "Building a pipeline for filtering and programmatic analysis of sensor readings.",
+                t2_input_label: "Input data",
+                t2_input_text: "CSV file with production sensor data",
+                t2_req_label: "Solution requirements",
+                t2_req_text: "Tools: Python (using the pandas library).",
+                t2_format_label: "Result format",
+                t2_format_text: "Script .py or .ipynb with pipeline",
+                t2_criteria_label: "Evaluation criteria",
+                t2_crit1: "🗂 Data processing — 40%",
+                t2_crit2: "🔍 Anomaly logic — 30%",
+                t2_crit3: "📋 Output — 30%",
+                partner_name_2_expected_result: "Expected result",
+                partner_name_2_expected_result_description: "A reproducible Python script that cleans data, applies anomaly detection rules, and generates a deviation report.",
+
+                // task 3 details
+                t3_essence_label: "Task essence",
+                t3_system_label: "System objective",
+                t3_task1: "▸ Train an ML model to predict defect occurrence",
+                t3_task2: "▸ Analyze prediction accuracy",
+                t3_actually_label: "Problem actually solved",
+                t3_actually_text: "Creating a predictive ML model for classifying product status.",
+                t3_input_label: "Input data",
+                t3_input_text: "Historical production process data",
+                t3_req_label: "Solution requirements",
+                t3_req_text: "Tools: Python + sklearn library.",
+                t3_format_label: "Result format",
+                t3_format_text: "Model code + .pkl weights + metrics",
+                t3_criteria_label: "Evaluation criteria",
+                t3_crit1: "🏗 Architecture — 40%",
+                t3_crit2: "🎯 Accuracy — 30%",
+                t3_crit3: "🔬 Analysis — 30%",
+                partner_name_3_expected_result: "Expected result",
+                partner_name_3_expected_result_description: "A trained ML model capable of predicting defects on new data with metric-verified accuracy.",
+
+                // task 4 details
+                t4_essence_label: "Task essence",
+                t4_system_label: "System objective",
+                t4_task1: "▸ Monitor indicators in real time",
+                t4_task2: "▸ Generate an alarm signal at critical values",
+                t4_actually_label: "Problem actually solved",
+                t4_actually_text: "Building a hardware–software link to implement the Internet of Things (IoT) concept.",
+                t4_input_label: "Input data",
+                t4_input_text: "Streaming data from a microcontroller or emulator",
+                t4_req_label: "Solution requirements",
+                t4_req_text: "Tools: ESP32 (or emulation) + Python.",
+                t4_format_label: "Result format",
+                t4_format_text: "C++/MicroPython code + Python server + demo",
+                t4_criteria_label: "Evaluation criteria",
+                t4_crit1: "🏗 Architecture — 40%",
+                t4_crit2: "⚙️ Implementation — 40%",
+                t4_crit3: "🎬 Demo — 20%",
+                partner_name_4_expected_result: "Expected result",
+                partner_name_4_expected_result_description: "A working IoT system prototype (physical or emulated) that successfully reads data and triggers an alarm based on the defined condition.",
+
+                // task 5 details
+                t5_essence_label: "Task essence",
+                t5_system_label: "System objective",
+                t5_task1: "▸ Simulate the operation of a physical installation",
+                t5_task2: "▸ Provide clear process visualization in Grafana",
+                t5_actually_label: "Problem actually solved",
+                t5_actually_text: "Developing a mathematical/logical simulation and integrating it with professional monitoring tools.",
+                t5_input_label: "Input data",
+                t5_input_text: "Physical model parameters (set programmatically)",
+                t5_req_label: "Solution requirements",
+                t5_req_text: "Tools: Python (for logic) / Grafana (for visualization).",
+                t5_format_label: "Result format",
+                t5_format_text: "Grafana dashboard + Python data source script",
+                t5_criteria_label: "Evaluation criteria",
+                t5_crit1: "🧮 Simulation — 40%",
+                t5_crit2: "📈 Grafana — 30%",
+                t5_crit3: "🔁 Logic — 30%",
+                partner_name_5_expected_result: "Expected result",
+                partner_name_5_expected_result_description: "A fully interactive digital twin dashboard displaying the state of the simulated installation in real time.",
+
+                // task 6 details
+                t6_essence_label: "Task essence",
+                t6_system_label: "System objective",
+                t6_task1: "▸ Predict the future behavior of the process",
+                t6_task2: "▸ Automatically control the process based on predictions",
+                t6_actually_label: "Problem actually solved",
+                t6_actually_text: "Implementing advanced AI algorithms to create a closed-loop control cycle without human involvement.",
+                t6_input_label: "Input data",
+                t6_input_text: "Dynamic environment/process data in real time",
+                t6_req_label: "Solution requirements",
+                t6_req_text: "Tools: Machine Learning (ML) / Reinforcement Learning (RL).",
+                t6_format_label: "Result format",
+                t6_format_text: "AI agent + documentation + test results",
+                t6_criteria_label: "Evaluation criteria",
+                t6_crit1: "💡 Concept — 40%",
+                t6_crit2: "⚙️ Implementation — 30%",
+                t6_crit3: "🚀 Novelty — 30%",
+                partner_name_6_expected_result: "Expected result",
+                partner_name_6_expected_result_description: "An innovative predictive control system demonstrating the agent's ability to independently optimize or adjust a given process using RL/ML methods.",
+
 <!--                participantsTitle: "Participants",-->
 <!--                participantsText: "Students of higher education institutions of the Republic of Kazakhstan.",-->
 <!--                juryTitle: "Jury",-->
@@ -1243,7 +1696,7 @@
                 formatText: "The competition will be held offline. Participants will experience intensive teamwork, mentoring support, and live project defense sessions.",
                 placeAddress: "ATU Campus, Almaty, Furkat Street, 348/4",
                 placeDuration: "2-day program",
-                placeBoxTitle: "ATU IT Battle",
+                placeBoxTitle: "ATU & KazNU AI",
                 placeBoxText: "AI, digital products, team competition, pitch, and innovation",
 
                 programTitle: "Competition Program",
@@ -1281,8 +1734,8 @@
                 footerNavTitle: "Navigation",
                 footerContactTitle: "Contacts",
                 footerLegalTitle: "Info",
-                footerLegalText: "ATU IT Battle",
-                footerCopy: "© 2026 Almaty Technological University. ATU IT Battle."
+                footerLegalText: "ATU & KazNU AI",
+                footerCopy: "© 2026 ATU & KazNU AI Hackathon. ATU & KazNU AI."
             }
         };
 
@@ -1336,18 +1789,138 @@
 
             // info
             document.getElementById('info-title').textContent = t.infoTitle;
+            document.getElementById('or').textContent = t.or;
             if (t.partner_name_1) document.getElementById('partner_name_1').textContent = t.partner_name_1;
             document.getElementById('partner_name_1_description').textContent = t.partner_name_1_description;
+            document.getElementById('partner_name_1_essence_exercise').textContent = t.partner_name_1_essence_exercise;
+            document.getElementById('partner_name_1_essence_exercise_1').innerHTML = '<span class="text-blue-500 mt-0.5">▸</span>' + t.partner_name_1_essence_exercise_1.replace('▸','').trim();
+            document.getElementById('partner_name_1_essence_exercise_2').innerHTML = '<span class="text-blue-500 mt-0.5">▸</span>' + t.partner_name_1_essence_exercise_2.replace('▸','').trim();
+            document.getElementById('partner_name_1_essence_exercise_3').innerHTML = '<span class="text-blue-500 mt-0.5">▸</span>' + t.partner_name_1_essence_exercise_3.replace('▸','').trim();
+            document.getElementById('partner_name_1_system_exercise').textContent = t.partner_name_1_system_exercise;
+            document.getElementById('partner_name_1_input_data').textContent = t.partner_name_1_input_data;
+            document.getElementById('partner_name_1_table').textContent = t.partner_name_1_table;
+            document.getElementById('partner_name_1_result_format').textContent = t.partner_name_1_result_format;
+            document.getElementById('partner_name_1_file').textContent = t.partner_name_1_file;
+            document.getElementById('partner_name_1_dashboard').textContent = t.partner_name_1_dashboard;
+            document.getElementById('partner_name_1_evaluation_criteria').textContent = t.partner_name_1_evaluation_criteria;
+            document.getElementById('partner_name_1_calculations').textContent = t.partner_name_1_calculations;
+            document.getElementById('partner_name_1_visualization').textContent = t.partner_name_1_visualization;
+            document.getElementById('partner_name_1_conclusions').textContent = t.partner_name_1_conclusions;
+            document.getElementById('partner_name_1_expected_result').textContent = t.partner_name_1_expected_result;
+            document.getElementById('partner_name_1_expected_result_description').textContent = t.partner_name_1_expected_result_description;
+
             if (t.partner_name_2) document.getElementById('partner_name_2').textContent = t.partner_name_2;
             document.getElementById('partner_name_2_description').textContent = t.partner_name_2_description;
+            document.getElementById('t2_essence_label').textContent = t.t2_essence_label;
+            document.getElementById('t2_system_label').textContent = t.t2_system_label;
+            document.getElementById('t2_task1').innerHTML = '<span class="text-green-500 mt-0.5">▸</span>' + t.t2_task1.replace('▸','').trim();
+            document.getElementById('t2_task2').innerHTML = '<span class="text-green-500 mt-0.5">▸</span>' + t.t2_task2.replace('▸','').trim();
+            document.getElementById('t2_actually_label').textContent = t.t2_actually_label;
+            document.getElementById('t2_actually_text').textContent = t.t2_actually_text;
+            document.getElementById('t2_input_label').textContent = t.t2_input_label;
+            document.getElementById('t2_input_text').textContent = t.t2_input_text;
+            document.getElementById('t2_req_label').textContent = t.t2_req_label;
+            document.getElementById('t2_req_text').textContent = t.t2_req_text;
+            document.getElementById('t2_format_label').textContent = t.t2_format_label;
+            document.getElementById('t2_format_text').textContent = t.t2_format_text;
+            document.getElementById('t2_criteria_label').textContent = t.t2_criteria_label;
+            document.getElementById('t2_crit1').textContent = t.t2_crit1;
+            document.getElementById('t2_crit2').textContent = t.t2_crit2;
+            document.getElementById('t2_crit3').textContent = t.t2_crit3;
+            document.getElementById('partner_name_2_expected_result').textContent = t.partner_name_2_expected_result;
+            document.getElementById('partner_name_2_expected_result_description').textContent = t.partner_name_2_expected_result_description;
+
             if (t.partner_name_3) document.getElementById('partner_name_3').textContent = t.partner_name_3;
             document.getElementById('partner_name_3_description').textContent = t.partner_name_3_description;
+            document.getElementById('t3_essence_label').textContent = t.t3_essence_label;
+            document.getElementById('t3_system_label').textContent = t.t3_system_label;
+            document.getElementById('t3_task1').innerHTML = '<span class="text-purple-500 mt-0.5">▸</span>' + t.t3_task1.replace('▸','').trim();
+            document.getElementById('t3_task2').innerHTML = '<span class="text-purple-500 mt-0.5">▸</span>' + t.t3_task2.replace('▸','').trim();
+            document.getElementById('t3_actually_label').textContent = t.t3_actually_label;
+            document.getElementById('t3_actually_text').textContent = t.t3_actually_text;
+            document.getElementById('t3_input_label').textContent = t.t3_input_label;
+            document.getElementById('t3_input_text').textContent = t.t3_input_text;
+            document.getElementById('t3_req_label').textContent = t.t3_req_label;
+            document.getElementById('t3_req_text').textContent = t.t3_req_text;
+            document.getElementById('t3_format_label').textContent = t.t3_format_label;
+            document.getElementById('t3_format_text').textContent = t.t3_format_text;
+            document.getElementById('t3_criteria_label').textContent = t.t3_criteria_label;
+            document.getElementById('t3_crit1').textContent = t.t3_crit1;
+            document.getElementById('t3_crit2').textContent = t.t3_crit2;
+            document.getElementById('t3_crit3').textContent = t.t3_crit3;
+            document.getElementById('partner_name_3_expected_result').textContent = t.partner_name_3_expected_result;
+            document.getElementById('partner_name_3_expected_result_description').textContent = t.partner_name_3_expected_result_description;
+
             if (t.partner_name_4) document.getElementById('partner_name_4').textContent = t.partner_name_4;
             document.getElementById('partner_name_4_description').textContent = t.partner_name_4_description;
+            document.getElementById('t4_essence_label').textContent = t.t4_essence_label;
+            document.getElementById('t4_system_label').textContent = t.t4_system_label;
+            document.getElementById('t4_task1').innerHTML = '<span class="text-orange-500 mt-0.5">▸</span>' + t.t4_task1.replace('▸','').trim();
+            document.getElementById('t4_task2').innerHTML = '<span class="text-orange-500 mt-0.5">▸</span>' + t.t4_task2.replace('▸','').trim();
+            document.getElementById('t4_actually_label').textContent = t.t4_actually_label;
+            document.getElementById('t4_actually_text').textContent = t.t4_actually_text;
+            document.getElementById('t4_input_label').textContent = t.t4_input_label;
+            document.getElementById('t4_input_text').textContent = t.t4_input_text;
+            document.getElementById('t4_req_label').textContent = t.t4_req_label;
+            document.getElementById('t4_req_text').textContent = t.t4_req_text;
+            document.getElementById('t4_format_label').textContent = t.t4_format_label;
+            document.getElementById('t4_format_text').textContent = t.t4_format_text;
+            document.getElementById('t4_criteria_label').textContent = t.t4_criteria_label;
+            document.getElementById('t4_crit1').textContent = t.t4_crit1;
+            document.getElementById('t4_crit2').textContent = t.t4_crit2;
+            document.getElementById('t4_crit3').textContent = t.t4_crit3;
+            document.getElementById('partner_name_4_expected_result').textContent = t.partner_name_4_expected_result;
+            document.getElementById('partner_name_4_expected_result_description').textContent = t.partner_name_4_expected_result_description;
+
             if (t.partner_name_5) document.getElementById('partner_name_5').textContent = t.partner_name_5;
             document.getElementById('partner_name_5_description').textContent = t.partner_name_5_description;
+            document.getElementById('t5_essence_label').textContent = t.t5_essence_label;
+            document.getElementById('t5_system_label').textContent = t.t5_system_label;
+            document.getElementById('t5_task1').innerHTML = '<span class="text-teal-500 mt-0.5">▸</span>' + t.t5_task1.replace('▸','').trim();
+            document.getElementById('t5_task2').innerHTML = '<span class="text-teal-500 mt-0.5">▸</span>' + t.t5_task2.replace('▸','').trim();
+            document.getElementById('t5_actually_label').textContent = t.t5_actually_label;
+            document.getElementById('t5_actually_text').textContent = t.t5_actually_text;
+            document.getElementById('t5_input_label').textContent = t.t5_input_label;
+            document.getElementById('t5_input_text').textContent = t.t5_input_text;
+            document.getElementById('t5_req_label').textContent = t.t5_req_label;
+            document.getElementById('t5_req_text').textContent = t.t5_req_text;
+            document.getElementById('t5_format_label').textContent = t.t5_format_label;
+            document.getElementById('t5_format_text').textContent = t.t5_format_text;
+            document.getElementById('t5_criteria_label').textContent = t.t5_criteria_label;
+            document.getElementById('t5_crit1').textContent = t.t5_crit1;
+            document.getElementById('t5_crit2').textContent = t.t5_crit2;
+            document.getElementById('t5_crit3').textContent = t.t5_crit3;
+            document.getElementById('partner_name_5_expected_result').textContent = t.partner_name_5_expected_result;
+            document.getElementById('partner_name_5_expected_result_description').textContent = t.partner_name_5_expected_result_description;
+
             if (t.partner_name_6) document.getElementById('partner_name_6').textContent = t.partner_name_6;
             document.getElementById('partner_name_6_description').textContent = t.partner_name_6_description;
+            document.getElementById('t6_essence_label').textContent = t.t6_essence_label;
+            document.getElementById('t6_system_label').textContent = t.t6_system_label;
+            document.getElementById('t6_task1').innerHTML = '<span class="text-red-500 mt-0.5">▸</span>' + t.t6_task1.replace('▸','').trim();
+            document.getElementById('t6_task2').innerHTML = '<span class="text-red-500 mt-0.5">▸</span>' + t.t6_task2.replace('▸','').trim();
+            document.getElementById('t6_actually_label').textContent = t.t6_actually_label;
+            document.getElementById('t6_actually_text').textContent = t.t6_actually_text;
+            document.getElementById('t6_input_label').textContent = t.t6_input_label;
+            document.getElementById('t6_input_text').textContent = t.t6_input_text;
+            document.getElementById('t6_req_label').textContent = t.t6_req_label;
+            document.getElementById('t6_req_text').textContent = t.t6_req_text;
+            document.getElementById('t6_format_label').textContent = t.t6_format_label;
+            document.getElementById('t6_format_text').textContent = t.t6_format_text;
+            document.getElementById('t6_criteria_label').textContent = t.t6_criteria_label;
+            document.getElementById('t6_crit1').textContent = t.t6_crit1;
+            document.getElementById('t6_crit2').textContent = t.t6_crit2;
+            document.getElementById('t6_crit3').textContent = t.t6_crit3;
+            document.getElementById('partner_name_6_expected_result').textContent = t.partner_name_6_expected_result;
+            document.getElementById('partner_name_6_expected_result_description').textContent = t.partner_name_6_expected_result_description;
+
+            // task 1 detail fields (inline elements)
+            document.getElementById('t1_actually_label').textContent = t.t1_actually_label;
+            document.getElementById('t1_actually_text').textContent = t.t1_actually_text;
+            document.getElementById('t1_req_label').textContent = t.t1_req_label;
+            document.getElementById('t1_req_text').textContent = t.t1_req_text;
+            //document.getElementById('t1_format_label').textContent = t.t1_format_label;
+            //document.getElementById('t1_format_text').textContent = t.t1_format_text;
 
             // prize
             document.getElementById('prize-title').textContent = t.prizeTitle;
@@ -1410,7 +1983,7 @@
             document.getElementById('footer-legal-text').textContent = t.footerLegalText;
             document.getElementById('footer-copy').textContent = t.footerCopy;
 
-            document.title = "ATU IT Battle";
+            document.title = "ATU & KazNU AI";
 
             localStorage.setItem('atu_lang', lang);
 
