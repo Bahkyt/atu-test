@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATU IT Battle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 1.6vw, 32px);
+        font-size: clamp(13px, 0.95vw, 18px);
+        line-height: 1.1;
+        flex-wrap: nowrap;
+    }
+
+    .nav-link {
+        white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0;
+        transition: color 0.2s ease;
+    }
+        @media (max-width: 1200px) {
+        .desktop-nav {
+            gap: 14px;
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 1100px) {
+        .desktop-nav {
+            gap: 10px;
+            font-size: 13px;
+        }
+    }
+    .brand-logo {
+        white-space: nowrap;
+        font-size: clamp(28px, 2vw, 42px);
+        line-height: 0.95;
+    }
+        .hero-gradient { background: linear-gradient(135deg, #0f2f75 0%, #2563eb 100%); }
+        .partner-scroll { animation: scroll 28s linear infinite; }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .lang-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 overflow-x-hidden">
+
+    <!-- NAVBAR -->
+<!-- NAVBAR: ATU IT Battle (Tailwind + minimal custom CSS + JS) -->
+<style>
+  /* 1) Синхронизация визуального active для языка (без статического active в HTML) */
+  .lang-btn.active {
+    background: #2563eb; /* tailwind blue-600 */
+    color: #fff;
+  }
+
+  /* 2) Авто-типографика через clamp(): логотип и пункты меню чуть подстраиваются по ширине */
+  .brand-logo {
+    font-size: clamp(18px, 1.35vw, 24px);
+    line-height: 1.05;
+  }
+  .nav-link {
+    font-size: clamp(13px, 0.95vw, 15.5px);
+    line-height: 1;
+  }
+
+  /* 3) Чуть приятнее фокус для клавиатуры (не конфликтует с Tailwind) */
+  .focus-ring:focus-visible {
+    outline: 2px solid rgba(37, 99, 235, 0.6);
+    outline-offset: 2px;
+    border-radius: 10px;
+  }
+</style>
+
+<nav class="fixed top-[6px] left-0 right-0 z-50">
+  <div class="mx-auto max-w-7xl xl:max-w-[1400px] px-3 sm:px-5 lg:px-8">
+    <!-- relative нужен для absolute mobile menu -->
+    <div class="relative">
+      <!-- Shell -->
+      <div class="rounded-2xl bg-white/95 backdrop-blur-md border border-gray-100 shadow-sm">
+        <div class="flex h-[68px] items-center px-4 sm:px-5 lg:px-6">
+
+          <!-- LEFT: flex-1 + min-w-0 + overflow-hidden, чтобы НЕ налезать на RIGHT -->
+          <div class="flex flex-1 items-center gap-6 lg:gap-8 min-w-0 overflow-hidden">
+            <!-- Logo -->
+            <a href="#home"
+               class="brand-logo font-extrabold text-blue-900 tracking-tight whitespace-nowrap shrink-0 focus-ring">
+              ATU IT Battle
+            </a>
+
+            <!-- Desktop menu
+                 ВАРИАНТ ПО УМОЛЧАНИЮ: hidden 2xl:flex (безопаснее для длинных RU/KZ)
+                 Если хочешь показывать меню раньше — замени 2xl -> xl (см. таблицу ниже).
+            -->
+            <div class="hidden 2xl:flex items-center gap-5 2xl:gap-7 font-medium text-gray-600 min-w-0 overflow-hidden">
+              <a href="#home"    class="nav-link nav-home  whitespace-nowrap hover:text-blue-600 transition focus-ring">Басты бет</a>
+              <a href="#about"   class="nav-link nav-about whitespace-nowrap hover:text-blue-600 transition focus-ring">Сайыс туралы</a>
+                {% if is_winners %}
+              <a href="#winners"   class="nav-link nav-winner whitespace-nowrap hover:text-blue-600 transition focus-ring">Жеңімпаздар</a>
+                {% endif %}
+                <a href="#tasks"   class="nav-link nav-tasks whitespace-nowrap hover:text-blue-600 transition focus-ring">Қатысушылар</a>
+              <a href="#program" class="nav-link nav-program whitespace-nowrap hover:text-blue-600 transition focus-ring">Бағдарлама</a>
+              <a href="#tracks"  class="nav-link nav-tracks whitespace-nowrap hover:text-blue-600 transition focus-ring">Бағыттар</a>
+              <a href="#place"   class="nav-link nav-place whitespace-nowrap hover:text-blue-600 transition focus-ring">Өтетін орны</a>
+            </div>
+          </div>
+
+          <!-- RIGHT: shrink-0 + pl-* создают «воздух» и защищают от наезда -->
+          <div class="flex shrink-0 items-center gap-2 sm:gap-3 pl-4 sm:pl-6 lg:pl-8">
+            <!-- Language switch (desktop/tablet). Без .active в HTML! -->
+            <div class="hidden md:flex items-center bg-gray-100 rounded-full p-1 shrink-0"
+                 role="group" aria-label="Language switcher">
+              <button type="button" class="lang-btn px-2.5 py-1 rounded-full text-xs font-semibold transition focus-ring"
+                      data-lang="kz" aria-pressed="false">KZ</button>
+              <button type="button" class="lang-btn px-2.5 py-1 rounded-full text-xs font-semibold transition focus-ring"
+                      data-lang="ru" aria-pressed="false">RU</button>
+              <button type="button" class="lang-btn px-2.5 py-1 rounded-full text-xs font-semibold transition focus-ring"
+                      data-lang="en" aria-pressed="false">EN</button>
+            </div>
+
+            <!-- Join button -->
+            <a href="{{ url_for('register') }}"
+               id="nav-register-btn"
+               class="hidden sm:inline-flex items-center justify-center bg-blue-600 text-white px-4 py-1.5 rounded-full
+                      font-semibold hover:bg-blue-700 transition text-sm whitespace-nowrap shrink-0 focus-ring">
+              Қатысу
+            </a>
+
+            <!-- Burger (показывается там, где desktop меню скрыто)
+                 ВАРИАНТ ПО УМОЛЧАНИЮ: 2xl:hidden
+                 Если switch на xl — замени 2xl:hidden -> xl:hidden.
+            -->
+            <button id="mobile-menu-button"
+                    type="button"
+                    class="2xl:hidden inline-flex items-center justify-center p-2 rounded-lg text-blue-900 hover:bg-gray-100 transition
+                           focus-ring"
+                    aria-label="Открыть меню"
+                    aria-controls="mobile-menu"
+                    aria-expanded="false">
+              <!-- Inline SVG burger (без FontAwesome зависимостей) -->
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOBILE MENU (dropdown under navbar) -->
+      <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 mt-2">
+        <div class="rounded-2xl bg-white border border-gray-100 shadow-lg overflow-hidden">
+          <div class="px-4 py-4 space-y-4">
+            <!-- Mobile language -->
+            <div class="flex items-center gap-2" role="group" aria-label="Language switcher mobile">
+              <button type="button" class="lang-btn px-3 py-1.5 rounded-full text-sm font-semibold transition bg-gray-100 focus-ring"
+                      data-lang="kz" aria-pressed="false">KZ</button>
+              <button type="button" class="lang-btn px-3 py-1.5 rounded-full text-sm font-semibold transition bg-gray-100 focus-ring"
+                      data-lang="ru" aria-pressed="false">RU</button>
+              <button type="button" class="lang-btn px-3 py-1.5 rounded-full text-sm font-semibold transition bg-gray-100 focus-ring"
+                      data-lang="en" aria-pressed="false">EN</button>
+            </div>
+
+            <!-- Mobile links -->
+            <div class="flex flex-col gap-3 text-gray-700 font-semibold">
+              <a href="#home"    class="nav-home  hover:text-blue-600 transition focus-ring">Басты бет</a>
+              <a href="#about"   class="nav-about hover:text-blue-600 transition focus-ring">Сайыс туралы</a>
+              {% if is_winners %}
+              <a href="#winners"   class="nav-link nav-winner whitespace-nowrap hover:text-blue-600 transition focus-ring">Жеңімпаздар</a>
+              {% endif %}
+
+                <a href="#tasks"   class="nav-tasks hover:text-blue-600 transition focus-ring">Қатысушылар</a>
+              <a href="#program" class="nav-program hover:text-blue-600 transition focus-ring">Бағдарлама</a>
+              <a href="#tracks"  class="nav-tracks hover:text-blue-600 transition focus-ring">Бағыттар</a>
+              <a href="#place"   class="nav-place hover:text-blue-600 transition focus-ring">Өтетін орны</a>
+            </div>
+
+            <!-- Mobile Join -->
+            <a href="{{ url_for('register') }}"
+               id="mobile-register-btn"
+               class="block w-full text-center bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition focus-ring">
+              Қатысу
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    <!-- HERO -->
+<section id="home" class="pt-20 md:pt-32 pb-16 md:pb-40 hero-gradient text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+
+    <span
+      id="hero-badge"
+      class="inline-block bg-blue-400/20 py-2 px-4 rounded-full text-[10px] sm:text-xs md:text-sm font-bold mb-5 md:mb-6 border border-blue-300/30 uppercase tracking-widest"
+    >
+      Almaty Technological University
+    </span>
+
+    <h1
+      id="hero-title"
+      class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 md:mb-6 leading-[1.1] break-words"
+    >
+      «ATU IT Battle»<br />
+      <span class="text-blue-200">цифрлық шешімдер сайысы</span>
+    </h1>
+
+    <p
+      id="hero-subtitle"
+      class="text-base sm:text-lg md:text-xl mb-8 md:mb-10 text-blue-50 max-w-3xl mx-auto leading-relaxed"
+    >
+      Жасанды интеллектпен идеяңды іске асыр – ATU IT Battle-де жеңіске жет!
+      Бас жүлде – 300 000 теңге!
+    </p>
+
+    <div class="mb-8 md:mb-10">
+      <div class="inline-block bg-white/10 backdrop-blur-sm px-4 sm:px-5 py-3 rounded-xl border border-white/20">
+        <span
+          id="register_time"
+          class="text-blue-200 text-[10px] sm:text-xs uppercase tracking-widest block mb-1"
+        >
+          Регистрация
+        </span>
+        <span class="text-white font-semibold text-sm sm:text-base">
+          {{ dateFrom }} — {{ dateTo }}
+        </span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-10 md:mb-12 max-w-3xl mx-auto">
+      <div class="flex items-center gap-3 bg-white/10 p-4 rounded-2xl backdrop-blur-sm text-left">
+        <i class="far fa-calendar text-2xl md:text-3xl shrink-0"></i>
+        <div>
+          <p id="hero-date-label" class="text-[10px] md:text-sm opacity-80 uppercase leading-tight">
+            Іс-шара ұзақтығы
+          </p>
+          <p id="hero-date-value" class="text-base md:text-lg font-bold">2 күн</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 bg-white/10 p-4 rounded-2xl backdrop-blur-sm text-left">
+        <i class="fas fa-trophy text-2xl md:text-3xl shrink-0"></i>
+        <div>
+          <p id="hero-prize-label" class="text-[10px] md:text-sm opacity-80 uppercase leading-tight">
+            Бас жүлде
+          </p>
+          <p id="hero-prize-value" class="text-base md:text-lg font-bold">300 000 ₸</p>
+        </div>
+      </div>
+    </div>
+
+    <a
+      href="{{ url_for('register') }}"
+      id="hero-register-btn"
+      class="inline-flex items-center justify-center bg-white text-blue-900 px-8 py-3 md:px-12 md:py-5 rounded-2xl text-base md:text-xl font-bold hover:scale-105 transition shadow-2xl"
+    >
+      Қатысу
+    </a>
+
+  </div>
+</section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="max-w-5xl mx-auto text-center mb-14">
+                <h2 id="about-title" class="text-3xl md:text-4xl font-bold mb-6 text-blue-900 tracking-tight">
+                    Сайыс туралы
+                </h2>
+                <p id="about-text" class="text-lg text-gray-600 leading-relaxed">
+                    «ATU IT Battle» цифрлық шешімдер сайысының мақсаты – тағам өндірісі, қаржы саласы,
+                    мейрамхана бизнесі, туризм және қызмет көрсету индустриясындағы өзекті мәселелерді шешуге
+                    бағытталған заманауи цифрлық және жасанды интеллектке негізделген IT-шешімдерді әзірлеу,
+                    білім алушылардың инновациялық ойлау қабілетін дамыту және олардың тәжірибелік
+                    құзыреттіліктерін жетілдіру.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+                <div class="bg-gray-50 rounded-[2rem] p-8 md:p-10 border border-gray-100 shadow-sm">
+                    <h3 id="participants-do-title" class="text-2xl font-bold text-blue-900 mb-6">
+                        Қатысушылар сайыс барысында
+                    </h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+                            <span id="do-1">Нақты бизнес-кейстер мен салалық мәселелерге талдау жүргізеді</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+                            <span id="do-2">Қысқа мерзім ішінде жасанды интеллект элементтерін қолдана отырып цифрлық өнімнің прототипін әзірлейді</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
+                            <span id="do-3">Жобаларын сараптамалық комиссия алдында таныстырып, қорғайды</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-blue-900 text-white rounded-[2rem] p-8 md:p-10 shadow-sm">
+                    <h3 id="goals-title" class="text-2xl font-bold mb-6">
+                        Негізгі міндеттері
+                    </h3>
+                    <ul class="space-y-4 text-blue-100">
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-300"></i>
+                            <span id="goal-1">Экономика салаларында цифрлық трансформация үдерістерін қолдау</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-300"></i>
+                            <span id="goal-2">Жасанды интеллект технологияларын тәжірибеде қолдануды ынталандыру</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-300"></i>
+                            <span id="goal-3">Стартап мәдениетін қалыптастыру және кәсіпкерлік бастамаларды дамыту</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-300"></i>
+                            <span id="goal-4">Командалық жұмыс, жобалық менеджмент және креативті ойлау дағдыларын жетілдіру</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-300"></i>
+                            <span id="goal-5">IT саласында қолданбалы, бәсекеге қабілетті шешімдер әзірлеуге жағдай жасау</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- WINNERS -->
+{% if is_winners %}
+<section id="winners" class="py-24 bg-gradient-to-br from-[#1e3a8a] via-[#1d4ed8] to-[#2563eb] text-white">
+    <div class="max-w-6xl mx-auto px-4">
+
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16" id="winners-title">
+            Победители
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            {% for winner in [winner_1, winner_2, winner_3] %}
+            <div class="relative rounded-[32px] bg-white/10 backdrop-blur-xl border border-white/10
+                        px-10 py-14 text-center shadow-2xl
+                        hover:scale-[1.03] hover:bg-white/15 transition duration-300 min-h-[380px] flex flex-col justify-center">
+
+                <div class="absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/10 via-transparent to-blue-300/10 opacity-0 hover:opacity-100 transition"></div>
+
+                <div class="w-28 h-28 mx-auto mb-8 rounded-full
+                            bg-gradient-to-br from-yellow-300 to-amber-400
+                            flex items-center justify-center
+                            shadow-[0_0_50px_rgba(255,200,0,0.5)]">
+                    <i class="fas fa-laptop-code text-white text-5xl"></i>
+                </div>
+
+                <h3 class="text-3xl font-extrabold mb-4 leading-snug break-words">
+                    {{ winner or "Нет данных" }}
+                </h3>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{% endif %}
+
+    <!-- Exercise -->
+    <section id="tasks" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 id="info-title" class="text-3xl md:text-4xl font-bold mb-4 text-center text-blue-900 tracking-tight">
+                Задания
+            </h2>
+            <p class="text-center text-gray-500 mb-12 text-sm">Выберите задание и разработайте решение за время хакатона</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <!-- 1 -->
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-4 flex items-center justify-between">
+                    <span class="text-white font-bold text-lg" id="partner_name_1">Задание 1: Умный контроль качества</span>
+                    <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">Python · Jupyter</span>
+                </div>
+                <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
+                    <div>
+                        <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="partner_name_1_description" class="text-gray-700 leading-relaxed text-sm">Разработать инструмент для базового анализа производственных показателей с целью контроля качества продукции.</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul id="partner_name_1_tasks" class="space-y-1 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Найти отклонения в производственных параметрах</li>
+                            <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Посчитать процент бракованной продукции</li>
+                            <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">▸</span>Построить наглядные графики для анализа</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p class="text-gray-700 font-medium">Таблица: температура, влажность, время, статус</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p class="text-gray-700 font-medium">Файл <strong>.py</strong> или <strong>.ipynb</strong> с дашбордом</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-2 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-semibold">✅ Расчёты — 40%</span>
+                            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-semibold">📊 Визуализация — 30%</span>
+                            <span class="bg-violet-50 text-violet-700 px-3 py-1 rounded-full font-semibold">💡 Выводы — 30%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="bg-gradient-to-r from-green-600 to-emerald-500 px-6 py-4 flex items-center justify-between">
+                    <span class="text-white font-bold text-lg" id="partner_name_2">Задание 2: Анализ производственной линии</span>
+                    <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">Python · pandas</span>
+                </div>
+                <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
+                    <div>
+                        <p class="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="partner_name_2_description" class="text-gray-700 leading-relaxed text-sm">Автоматизировать процесс выявления производственных аномалий на основе сырых данных с датчиков, используя скрипты.</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul id="partner_name_2_tasks" class="space-y-1 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">▸</span>Обработать предоставленный массив данных</li>
+                            <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">▸</span>Выявить аномалии по заданным правилам и алгоритмам</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p class="text-gray-700 font-medium">CSV-файл с данными производственных датчиков</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p class="text-gray-700 font-medium">Скрипт <strong>.py</strong> или <strong>.ipynb</strong> с pipeline</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-2 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full font-semibold">🗂 Обработка данных — 40%</span>
+                            <span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full font-semibold">🔍 Логика аномалий — 30%</span>
+                            <span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-semibold">📋 Вывод — 30%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="bg-gradient-to-r from-purple-600 to-violet-500 px-6 py-4 flex items-center justify-between">
+                    <span class="text-white font-bold text-lg" id="partner_name_3">Задание 3: ML-модель брака</span>
+                    <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">Python · sklearn</span>
+                </div>
+                <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
+                    <div>
+                        <p class="text-xs font-bold text-purple-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="partner_name_3_description" class="text-gray-700 leading-relaxed text-sm">Разработать и внедрить алгоритм машинного обучения для проактивного выявления дефектной продукции.</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul id="partner_name_3_tasks" class="space-y-1 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><span class="text-purple-500 mt-0.5">▸</span>Обучить модель ML для предсказания появления брака</li>
+                            <li class="flex items-start gap-2"><span class="text-purple-500 mt-0.5">▸</span>Провести анализ точности предсказаний</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p class="text-gray-700 font-medium">Исторические данные производственного процесса</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p class="text-gray-700 font-medium">Код модели + веса <strong>.pkl</strong> + метрики</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-2 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full font-semibold">🏗 Архитектура — 40%</span>
+                            <span class="bg-violet-50 text-violet-700 px-3 py-1 rounded-full font-semibold">🎯 Точность — 30%</span>
+                            <span class="bg-fuchsia-50 text-fuchsia-700 px-3 py-1 rounded-full font-semibold">🔬 Анализ — 30%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-4 flex items-center justify-between">
+                    <span class="text-white font-bold text-lg" id="partner_name_4">Задание 4: IoT-система</span>
+                    <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">ESP32 · MicroPython</span>
+                </div>
+                <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
+                    <div>
+                        <p class="text-xs font-bold text-orange-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="partner_name_4_description" class="text-gray-700 leading-relaxed text-sm">Спроектировать аппаратно-программный комплекс для мониторинга состояния физического объекта в реальном времени.</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul id="partner_name_4_tasks" class="space-y-1 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">▸</span>Осуществлять мониторинг показателей в реальном времени</li>
+                            <li class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">▸</span>Генерировать сигнал тревоги при критических значениях</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p class="text-gray-700 font-medium">Потоковые данные с микроконтроллера или эмулятора</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p class="text-gray-700 font-medium">Код C++/MicroPython + Python-сервер + демо</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-2 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full font-semibold">🏗 Архитектура — 40%</span>
+                            <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full font-semibold">⚙️ Реализация — 40%</span>
+                            <span class="bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full font-semibold">🎬 Демо — 20%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="bg-gradient-to-r from-teal-600 to-cyan-500 px-6 py-4 flex items-center justify-between">
+                    <span class="text-white font-bold text-lg" id="partner_name_5">Задание 5: Цифровой двойник</span>
+                    <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">Python · Grafana</span>
+                </div>
+                <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
+                    <div>
+                        <p class="text-xs font-bold text-teal-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="partner_name_5_description" class="text-gray-700 leading-relaxed text-sm">Создать виртуальную копию физической установки, синхронизированную с её процессами для визуализации и анализа.</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul id="partner_name_5_tasks" class="space-y-1 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><span class="text-teal-500 mt-0.5">▸</span>Симулировать работу физической установки</li>
+                            <li class="flex items-start gap-2"><span class="text-teal-500 mt-0.5">▸</span>Обеспечить наглядную визуализацию процессов в Grafana</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p class="text-gray-700 font-medium">Параметры физической модели (задаются программно)</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p class="text-gray-700 font-medium">Дашборд Grafana + Python-скрипт источника данных</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-2 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full font-semibold">🧮 Симуляция — 40%</span>
+                            <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full font-semibold">📈 Grafana — 30%</span>
+                            <span class="bg-sky-50 text-sky-700 px-3 py-1 rounded-full font-semibold">🔁 Логика — 30%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="bg-gradient-to-r from-red-600 to-rose-500 px-6 py-4 flex items-center justify-between">
+                    <span class="text-white font-bold text-lg" id="partner_name_6">Задание 6: Предиктивное управление</span>
+                    <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">ML · Reinforcement Learning</span>
+                </div>
+                <div class="p-6 md:p-8 flex flex-col gap-4 flex-1">
+                    <div>
+                        <p class="text-xs font-bold text-red-600 uppercase tracking-widest mb-1">Суть задачи</p>
+                        <p id="partner_name_6_description" class="text-gray-700 leading-relaxed text-sm">Разработать автономную интеллектуальную систему, способную не только анализировать, но и принимать решения по управлению сложным процессом.</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Задача системы</p>
+                        <ul id="partner_name_6_tasks" class="space-y-1 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><span class="text-red-500 mt-0.5">▸</span>Предсказывать дальнейшее поведение процесса</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 mt-0.5">▸</span>Автоматически управлять процессом на основе предсказаний</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Входные данные</p>
+                            <p class="text-gray-700 font-medium">Динамические данные среды/процесса в реальном времени</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-xs text-gray-400 mb-1">Формат результата</p>
+                            <p class="text-gray-700 font-medium">AI-агент + документация + результаты тестирования</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-2 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest">Критерии оценки</p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full font-semibold">💡 Концепт — 40%</span>
+                            <span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-full font-semibold">⚙️ Реализация — 30%</span>
+                            <span class="bg-pink-50 text-pink-700 px-3 py-1 rounded-full font-semibold">🚀 Новизна — 30%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- End Exercise -->
+
+    <!-- PRIZE -->
+    <section class="py-16 md:py-24 bg-blue-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
+            <div class="flex-1 w-full">
+                <h2 id="prize-title" class="text-3xl md:text-5xl font-extrabold mb-8 tracking-tight">
+                    Бас жүлде
+                </h2>
+
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-blue-400 mt-1">
+                            <i class="fas fa-trophy text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 id="prize-main" class="text-lg md:text-2xl font-bold uppercase">
+                                300 000 теңге
+                            </h4>
+                            <p id="prize-desc" class="text-blue-200 text-sm md:text-base">
+                                Үздік цифрлық және AI-шешім ұсынған командаға табысталады.
+                            </p>
+                        </div>
+                    </div>
+
+                    <ul class="text-blue-100 space-y-3 list-none bg-white/5 p-6 md:p-8 rounded-3xl border border-white/10">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                            <span id="prize-item-1">Инновациялық идея</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                            <span id="prize-item-2">AI технологияларын тиімді қолдану</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                            <span id="prize-item-3">Практикалық құндылық</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                            <span id="prize-item-4">Сапалы презентация және қорғау</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex-1 w-full mt-8 lg:mt-0">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-blue-500/20 blur-3xl rounded-full"></div>
+                    <div class="relative rounded-3xl shadow-2xl border-4 md:border-8 border-white/10 bg-white/10 backdrop-blur-sm p-10 h-[300px] md:h-[420px] flex flex-col items-center justify-center">
+                        <i class="fas fa-award text-7xl md:text-8xl text-blue-200 mb-6"></i>
+                        <div class="text-center">
+                            <p id="prize-card-label" class="text-blue-100 text-sm uppercase tracking-[0.2em] mb-2">Grand Prize</p>
+                            <h3 id="prize-card-value" class="text-4xl md:text-6xl font-black">300 000 ₸</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLACE -->
+    <section id="place" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 id="place-title" class="text-3xl md:text-4xl font-bold mb-12 text-center text-blue-900">
+                Өтетін орны мен форматы
+            </h2>
+
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <div class="flex-1">
+                    <div class="bg-gray-50 p-6 md:p-10 rounded-[2rem] border-l-8 border-blue-600 h-full">
+                        <h3 id="format-title" class="text-2xl font-bold mb-4">Оффлайн формат</h3>
+                        <p id="format-text" class="text-gray-600 leading-relaxed mb-8">
+                            Сайыс оффлайн режимде өтеді. Қатысушыларды қарқынды командалық жұмыс, менторлық қолдау
+                            және жобаларды тікелей қорғау күтеді.
+                        </p>
+                        <div class="space-y-4 font-semibold text-blue-900">
+                            <div class="flex items-center">
+                                <i class="fas fa-location-dot w-8 text-blue-600"></i>
+                                <span id="place-address">ATU кампусы, Алматы, Улица Фурката, 348/4</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="far fa-calendar-alt w-8 text-blue-600"></i>
+                                <span id="place-duration">2 күндік бағдарлама</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 h-[300px] md:h-auto">
+                    <div class="w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 rounded-[2rem] flex items-center justify-center overflow-hidden border border-blue-100">
+                        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Accc422568b25aa0cff17732950ad30e9ca5305d808d5fc2d762cba7636404011&amp;width=640&amp;height=527&amp;lang=ru_RU&amp;scroll=true"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM -->
+    <section id="program" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 id="program-title" class="text-3xl md:text-4xl font-bold mb-12 text-center text-blue-900">
+                Сайыс бағдарламасы
+            </h2>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <div class="bg-white rounded-[2rem] shadow-xl border border-gray-100 overflow-hidden">
+                    <div class="bg-blue-600 text-white px-8 py-6">
+                        <h3 id="day1-title" class="text-2xl font-bold">1-күн — Идея + Дамыту</h3>
+                    </div>
+                    <div class="divide-y divide-gray-100">
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">09:00 – 10:00</span>
+                            <span id="day1-1" class="text-right text-gray-700">Тіркелу, ашылу салтанаты</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">10:00 – 10:30</span>
+                            <span id="day1-2" class="text-right text-gray-700">Тапсырмаларды түсіндіру (тректерді таныстыру)</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">10:30 – 11:00</span>
+                            <span id="day1-3" class="text-right text-gray-700">Команда құру (2–4 адам)</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">11:00 – 13:00</span>
+                            <span id="day1-4" class="text-right text-gray-700">Жоба идеясы + прототипті бастау</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">13:00 – 14:00</span>
+                            <span id="day1-5" class="text-right text-gray-700">Кофе-брейк</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">14:00 – 18:00</span>
+                            <span id="day1-6" class="text-right text-gray-700">Дамыту уақыты (менторлар көмектеседі)</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">18:00 – 19:00</span>
+                            <span id="day1-7" class="text-right text-gray-700">Аралық чекпоинт (әр команда 2 минуттық апдейт береді)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[2rem] shadow-xl border border-gray-100 overflow-hidden">
+                    <div class="bg-blue-900 text-white px-8 py-6">
+                        <h3 id="day2-title" class="text-2xl font-bold">2-күн — Дайындау + Қорғау</h3>
+                    </div>
+                    <div class="divide-y divide-gray-100">
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">08:30 – 10:00</span>
+                            <span id="day2-1" class="text-right text-gray-700">Соңғы кодтау / презентация дайындау</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">10:00 – 12:30</span>
+                            <span id="day2-2" class="text-right text-gray-700">Жобаларды қорғау (pitch)</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">12:30 – 13:30</span>
+                            <span id="day2-3" class="text-right text-gray-700">Кофе-брейк</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">13:30 – 14:00</span>
+                            <span id="day2-4" class="text-right text-gray-700">Қазылар талқылауы</span>
+                        </div>
+                        <div class="p-6 flex justify-between gap-4">
+                            <span class="font-bold text-blue-600">14:00 – 15:00</span>
+                            <span id="day2-5" class="text-right text-gray-700">Марапаттау</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRACKS -->
+    <section id="tracks" class="py-16 md:py-24 hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 id="tracks-title" class="text-3xl md:text-4xl font-bold mb-16 text-center">
+                Бағыттар
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+                <div class="bg-white/10 p-8 md:p-10 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/20 transition group">
+                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-400 transition">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 id="track-1-title" class="text-xl font-bold mb-4">Тағам өндірісі</h3>
+                    <p id="track-1-text" class="text-blue-100 opacity-90 text-sm leading-relaxed">
+                        Өндірістік процестерді цифрландыру, тиімділікті арттыру және ақылды талдау жүйелері.
+                    </p>
+                </div>
+
+                <div class="bg-white/10 p-8 md:p-10 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/20 transition group">
+                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-400 transition">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 id="track-2-title" class="text-xl font-bold mb-4">Қаржы саласы</h3>
+                    <p id="track-2-text" class="text-blue-100 opacity-90 text-sm leading-relaxed">
+                        Аналитика, болжау, клиенттік сервистер және AI негізіндегі қаржылық құралдар.
+                    </p>
+                </div>
+
+                <div class="bg-white/10 p-8 md:p-10 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/20 transition group">
+                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-400 transition">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3 id="track-3-title" class="text-xl font-bold mb-4">Туризм және сервис</h3>
+                    <p id="track-3-text" class="text-blue-100 opacity-90 text-sm leading-relaxed">
+                        Қызмет көрсету индустриясындағы заманауи цифрлық шешімдер мен интеллектуалды платформалар.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="py-16 bg-white overflow-hidden border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 mb-10 text-center">
+            <h2 id="partners-title" class="text-xl font-bold text-blue-900 tracking-widest uppercase opacity-40">
+                Серіктестер
+            </h2>
+        </div>
+        <div class="flex whitespace-nowrap partner-scroll">
+            <div class="flex space-x-12 md:space-x-24 px-10 items-center grayscale opacity-40 hover:grayscale-0 transition">
+                <span class="text-2xl md:text-4xl font-black italic">ATU</span>
+                <span class="text-2xl md:text-4xl font-black italic">IT</span>
+                <span class="text-2xl md:text-4xl font-black italic">AI</span>
+                <span class="text-2xl md:text-4xl font-black italic">DIGITAL</span>
+                <span class="text-2xl md:text-4xl font-black italic">INNOVATION</span>
+                <span class="text-2xl md:text-4xl font-black italic">ATU</span>
+                <span class="text-2xl md:text-4xl font-black italic">IT</span>
+                <span class="text-2xl md:text-4xl font-black italic">AI</span>
+                <span class="text-2xl md:text-4xl font-black italic">DIGITAL</span>
+                <span class="text-2xl md:text-4xl font-black italic">INNOVATION</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTER -->
+    <section id="register" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="bg-white p-8 md:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-2xl border-4 border-blue-600 relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 id="register-title" class="text-3xl md:text-5xl font-black mb-6 text-blue-900">
+                        Дайынсың ба?
+                    </h2>
+                    <p id="register-text" class="text-gray-600 mb-10 text-base md:text-lg">
+                        Командаңды жинап, цифрлық идеяңды нақты жобаға айналдыр.
+                    </p>
+                    <a href="{{ url_for('register') }}" id="register-link" class="inline-block w-full sm:w-auto bg-blue-600 text-white text-lg md:text-2xl font-black px-10 py-5 rounded-2xl hover:bg-blue-700 hover:scale-105 transition shadow-xl uppercase">
+                        Қатысу
+                    </a>
+                    <p id="register-note" class="mt-6 text-sm text-gray-400 font-medium">
+                        2 күндік интенсив, AI, prototype, pitch
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- FOOTER -->
+<footer class="bg-blue-950 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-12 mb-8">
+        <div class="col-span-1 lg:col-span-1">
+            <h2 class="text-3xl font-black mb-6">ATU IT Battle</h2>
+            <p id="footer-desc" class="text-blue-200/70 text-sm leading-relaxed">
+                AI және цифрлық инновациялар сайысы. Идеядан prototype-ке дейін.
+            </p>
+        </div>
+
+        <div>
+            <h4 id="footer-nav-title" class="font-bold mb-6 text-blue-400 uppercase text-sm tracking-widest">Навигация</h4>
+            <ul class="space-y-3 text-sm text-blue-100/70">
+                <li><a href="#about" class="hover:text-white transition nav-about">О соревновании</a></li>
+                {% if is_winners %}
+              <a href="#winners"   class="nav-link nav-winner whitespace-nowrap hover:text-blue-600 transition focus-ring">Жеңімпаздар</a>
+                {% endif %}
+                <li><a href="#program" class="hover:text-white transition nav-program">Программа</a></li>
+                <li><a href="#place" class="hover:text-white transition nav-place">Место</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 id="footer-contact-title" class="font-bold mb-6 text-blue-400 uppercase text-sm tracking-widest">Байланыс</h4>
+            <p class="text-sm text-blue-100/70">
+                <i class="fas fa-envelope mr-3 text-blue-500"></i>
+                <a href="mailto:info@atu.kz">info@atu.kz</a>
+            </p>
+            <div class="flex space-x-4 mt-6">
+                <a href="https://www.instagram.com/atu_media/" class="text-xl hover:text-blue-400 transition">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <h4 id="footer-legal-title" class="font-bold mb-6 text-blue-400 uppercase text-sm tracking-widest">Ақпарат</h4>
+            <p id="footer-legal-text" class="text-xs text-blue-100/50 flex items-center">
+                <i class="far fa-file-lines mr-2"></i> ATU IT Battle
+            </p>
+        </div>
+    </div>
+
+    <div id="footer-copy" class="text-center text-blue-100/30 text-[10px] md:text-xs">
+        © 2026 Almaty Technological University. ATU IT Battle.
+    </div>
+
+    <div class="text-center text-[10px] text-blue-100/10 mt-2">
+        Сагындыков Бахыт · Қараменов Саид
+    </div>
+</footer>
+    <script>
+        const translations = {
+            kz: {
+                lang: "kz",
+                navHome: "Басты бет",
+                navAbout: "Сайыс туралы",
+                navWinner: "Жеңімпаздар",
+                navTasks: "Тапсырмалар",
+                navProgram: "Бағдарлама",
+                navTracks: "Бағыттар",
+                navPlace: "Өтетін орны",
+                navRegister: "Қатысу",
+                registerTime: "Тіркеу",
+
+                heroBadge: "Almaty Technological University",
+                heroTitle: "«ATU IT Battle» <br><span class='text-blue-200'>цифрлық шешімдер сайысы</span>",
+                heroSubtitle: "Жасанды интеллектпен идеяңды іске асыр – ATU IT Battle-де жеңіске жет! Бас жүлде – 300 000 теңге!",
+                heroDateLabel: "Іс-шара ұзақтығы",
+                heroDateValue: "2 күн",
+                heroPrizeLabel: "Бас жүлде",
+                heroPrizeValue: "300 000 ₸",
+                heroRegister: "Қатысу",
+
+                aboutTitle: "Сайыс туралы",
+                aboutText: "«ATU IT Battle» цифрлық шешімдер сайысының мақсаты – тағам өндірісі, қаржы саласы, мейрамхана бизнесі, туризм және қызмет көрсету индустриясындағы өзекті мәселелерді шешуге бағытталған заманауи цифрлық және жасанды интеллектке негізделген IT-шешімдерді әзірлеу, білім алушылардың инновациялық ойлау қабілетін дамыту және олардың тәжірибелік құзыреттіліктерін жетілдіру.",
+
+                winnersTitle: "Жеңімпаздар",
+
+                participantsDoTitle: "Қатысушылар сайыс барысында",
+                do1: "Нақты бизнес-кейстер мен салалық мәселелерге талдау жүргізеді",
+                do2: "Қысқа мерзім ішінде жасанды интеллект элементтерін қолдана отырып цифрлық өнімнің прототипін әзірлейді",
+                do3: "Жобаларын сараптамалық комиссия алдында таныстырып, қорғайды",
+
+                goalsTitle: "Негізгі міндеттері",
+                goal1: "Экономика салаларында цифрлық трансформация үдерістерін қолдау",
+                goal2: "Жасанды интеллект технологияларын тәжірибеде қолдануды ынталандыру",
+                goal3: "Стартап мәдениетін қалыптастыру және кәсіпкерлік бастамаларды дамыту",
+                goal4: "Командалық жұмыс, жобалық менеджмент және креативті ойлау дағдыларын жетілдіру",
+                goal5: "IT саласында қолданбалы, бәсекеге қабілетті шешімдер әзірлеуге жағдай жасау",
+
+                infoTitle: "Тапсырмалар",
+                partner_name_1: "1-тапсырма: Ақылды сапа бақылауы",
+                partner_name_1_description: "Өнімнің сапасын бақылау мақсатында өндірістік көрсеткіштерді базалық талдауға арналған құрал әзірлеу.",
+                partner_name_2: "2-тапсырма: Өндіріс желісін талдау",
+                partner_name_2_description: "Датчиктердің шикі деректері негізінде скриптер арқылы өндірістік аномалияларды анықтау процесін автоматтандыру.",
+                partner_name_3: "3-тапсырма: Ақаулардың ML-моделі",
+                partner_name_3_description: "Ақаулы өнімдерді белсенді анықтауға арналған машиналық оқыту алгоритмін әзірлеу және енгізу.",
+                partner_name_4: "4-тапсырма: IoT жүйесі",
+                partner_name_4_description: "Физикалық объектінің күйін нақты уақытта бақылауға арналған аппараттық-бағдарламалық кешенді жобалау.",
+                partner_name_5: "5-тапсырма: Цифрлық егіз",
+                partner_name_5_description: "Визуализация және талдау үшін физикалық қондырғының процестерімен синхрондалған виртуалды көшірмесін жасау.",
+                partner_name_6: "6-тапсырма: Болжамды басқару",
+                partner_name_6_description: "Күрделі процесті талдап қана қоймай, оны басқару бойынша шешімдер қабылдай алатын автономды интеллектуалды жүйе әзірлеу.",
+<!--                participantsTitle: "Қатысушылар",-->
+<!--                participantsText: "Қазақстан Республикасы жоғары оқу орындарының студенттері.",-->
+<!--                juryTitle: "Қазылар алқасы",-->
+<!--                juryText: "Еліміздің ірі компанияларының, қаржы ұйымдарының, IT-индустриясының және бизнес саласының жетекші мамандары мен сарапшылары.",-->
+
+                prizeTitle: "Бас жүлде",
+                prizeMain: "300 000 теңге",
+                prizeDesc: "Үздік цифрлық және AI-шешім ұсынған командаға табысталады.",
+                prizeItem1: "Инновациялық идея",
+                prizeItem2: "AI технологияларын тиімді қолдану",
+                prizeItem3: "Практикалық құндылық",
+                prizeItem4: "Сапалы презентация және қорғау",
+                prizeCardLabel: "Grand Prize",
+                prizeCardValue: "300 000 ₸",
+
+                placeTitle: "Өтетін орны мен форматы",
+                formatTitle: "Оффлайн формат",
+                formatText: "Сайыс оффлайн режимде өтеді. Қатысушыларды қарқынды командалық жұмыс, менторлық қолдау және жобаларды тікелей қорғау күтеді.",
+                placeAddress: "ATU кампусы, Алматы, Фурқат көшесі, 348/4",
+                placeDuration: "2 күндік бағдарлама",
+                placeBoxTitle: "ATU IT Battle",
+                placeBoxText: "AI, цифрлық өнімдер, командалық жарыс, pitch және инновация",
+
+                programTitle: "Сайыс бағдарламасы",
+                day1Title: "1-күн — Идея + Дамыту",
+                day2Title: "2-күн — Дайындау + Қорғау",
+                day11: "Тіркелу, ашылу салтанаты",
+                day12: "Тапсырмаларды түсіндіру (тректерді таныстыру)",
+                day13: "Команда құру (2–4 адам)",
+                day14: "Жоба идеясы + прототипті бастау",
+                day15: "Кофе-брейк",
+                day16: "Дамыту уақыты (менторлар көмектеседі)",
+                day17: "Аралық чекпоинт (әр команда 2 минуттық апдейт береді)",
+                day21: "Соңғы кодтау / презентация дайындау",
+                day22: "Жобаларды қорғау (pitch)",
+                day23: "Кофе-брейк",
+                day24: "Қазылар талқылауы",
+                day25: "Марапаттау",
+
+                tracksTitle: "Бағыттар",
+                track1Title: "Тағам өндірісі",
+                track1Text: "Өндірістік процестерді цифрландыру, тиімділікті арттыру және ақылды талдау жүйелері.",
+                track2Title: "Қаржы саласы",
+                track2Text: "Аналитика, болжау, клиенттік сервистер және AI негізіндегі қаржылық құралдар.",
+                track3Title: "Туризм және сервис",
+                track3Text: "Қызмет көрсету индустриясындағы заманауи цифрлық шешімдер мен интеллектуалды платформалар.",
+
+                partnersTitle: "Серіктестер",
+
+                registerTitle: "Дайынсың ба?",
+                registerText: "Командаңды жинап, цифрлық идеяңды нақты жобаға айналдыр.",
+                registerBtn: "Қатысу",
+                registerNote: "2 күндік интенсив, AI, prototype, pitch",
+
+                footerDesc: "AI және цифрлық инновациялар сайысы. Идеядан prototype-ке дейін.",
+                footerNavTitle: "Навигация",
+                footerContactTitle: "Байланыс",
+                footerLegalTitle: "Ақпарат",
+                footerLegalText: "ATU IT Battle",
+                footerCopy: "© 2026 Almaty Technological University. ATU IT Battle."
+            },
+
+            ru: {
+                lang: "ru",
+                navHome: "Главная",
+                navAbout: "О конкурсе",
+                navWinner: "Победители",
+                navTasks: "Задания",
+                navProgram: "Программа",
+                navTracks: "Направления",
+                navPlace: "Место",
+                navRegister: "Участвовать",
+                registerTime: "Регистрация",
+
+                heroBadge: "Almaty Technological University",
+                heroTitle: "«ATU IT Battle» <br><span class='text-blue-200'>соревнование цифровых решений</span>",
+                heroSubtitle: "Реализуй свою идею с искусственным интеллектом и побеждай в ATU IT Battle! Главный приз — 300 000 тенге!",
+                heroDateLabel: "Длительность",
+                heroDateValue: "2 дня",
+                heroPrizeLabel: "Главный приз",
+                heroPrizeValue: "300 000 ₸",
+                heroRegister: "Участвовать",
+
+                aboutTitle: "О соревновании",
+                aboutText: "Цель соревнования цифровых решений «ATU IT Battle» — разработка современных цифровых и основанных на искусственном интеллекте IT-решений, направленных на решение актуальных задач в пищевом производстве, финансовой сфере, ресторанном бизнесе, туризме и индустрии услуг, а также развитие инновационного мышления и практических компетенций обучающихся.",
+
+                winnersTitle: "Победители",
+
+                participantsDoTitle: "Во время соревнования участники",
+                do1: "Анализируют реальные бизнес-кейсы и отраслевые проблемы",
+                do2: "За короткий срок разрабатывают прототип цифрового продукта с применением элементов искусственного интеллекта",
+                do3: "Представляют и защищают свои проекты перед экспертной комиссией",
+
+                goalsTitle: "Основные задачи",
+                goal1: "Поддержка процессов цифровой трансформации в различных секторах экономики",
+                goal2: "Стимулирование практического применения технологий искусственного интеллекта",
+                goal3: "Формирование стартап-культуры и развитие предпринимательских инициатив",
+                goal4: "Развитие навыков командной работы, проектного менеджмента и креативного мышления",
+                goal5: "Создание условий для разработки прикладных и конкурентоспособных IT-решений",
+
+                infoTitle: "Задания от партнеров",
+                partner_name_1: "Задание 1: Умный контроль качества",
+                partner_name_1_description: "Разработать инструмент для базового анализа производственных показателей с целью контроля качества продукции.",
+                partner_name_2: "Задание 2: Анализ производственной линии",
+                partner_name_2_description: "Автоматизировать процесс выявления производственных аномалий на основе сырых данных с датчиков, используя скрипты.",
+                partner_name_3: "Задание 3: ML-модель брака",
+                partner_name_3_description: "Разработать и внедрить алгоритм машинного обучения для проактивного выявления дефектной продукции.",
+                partner_name_4: "Задание 4: IoT-система",
+                partner_name_4_description: "Спроектировать аппаратно-программный комплекс для мониторинга состояния физического объекта в реальном времени.",
+                partner_name_5: "Задание 5: Цифровой двойник",
+                partner_name_5_description: "Создать виртуальную копию физической установки, синхронизированную с её процессами для визуализации и анализа.",
+                partner_name_6: "Задание 6: Предиктивное управление",
+                partner_name_6_description: "Разработать автономную интеллектуальную систему, способную не только анализировать, но и принимать решения по управлению сложным процессом.",
+<!--                participantsTitle: "Участники",-->
+<!--                participantsText: "Студенты высших учебных заведений Республики Казахстан.",-->
+<!--                juryTitle: "Жюри",-->
+<!--                juryText: "Ведущие специалисты и эксперты крупных компаний, финансовых организаций, IT-индустрии и бизнеса страны.",-->
+
+                prizeTitle: "Главный приз",
+                prizeMain: "300 000 тенге",
+                prizeDesc: "Присуждается команде, предложившей лучшее цифровое и AI-решение.",
+                prizeItem1: "Инновационная идея",
+                prizeItem2: "Эффективное использование AI",
+                prizeItem3: "Практическая ценность",
+                prizeItem4: "Качественная презентация и защита",
+                prizeCardLabel: "Главный приз",
+                prizeCardValue: "300 000 ₸",
+
+                placeTitle: "Место и формат",
+                formatTitle: "Оффлайн формат",
+                formatText: "Соревнование проходит в оффлайн-режиме. Участников ждут интенсивная командная работа, менторская поддержка и очная защита проектов.",
+                placeAddress: "Кампус ATU, Алматы, Улица Фурката, 348/4",
+                placeDuration: "2-дневная программа",
+                placeBoxTitle: "ATU IT Battle",
+                placeBoxText: "AI, цифровые продукты, командное соревнование, pitch и инновации",
+
+                programTitle: "Программа соревнования",
+                day1Title: "День 1 — Идея + Разработка",
+                day2Title: "День 2 — Подготовка + Защита",
+                day11: "Регистрация, церемония открытия",
+                day12: "Объяснение заданий (презентация треков)",
+                day13: "Формирование команд (2–4 человека)",
+                day14: "Идея проекта + старт прототипирования",
+                day15: "Кофе-брейк",
+                day16: "Время разработки (менторы помогают)",
+                day17: "Промежуточный чекпоинт (каждая команда даёт 2-минутный апдейт)",
+                day21: "Финальное кодирование / подготовка презентации",
+                day22: "Защита проектов (pitch)",
+                day23: "Кофе-брейк",
+                day24: "Обсуждение жюри",
+                day25: "Награждение",
+
+                tracksTitle: "Направления",
+                track1Title: "Пищевое производство",
+                track1Text: "Цифровизация процессов, повышение эффективности и интеллектуальные аналитические системы.",
+                track2Title: "Финансовая сфера",
+                track2Text: "Аналитика, прогнозирование, клиентские сервисы и финансовые AI-инструменты.",
+                track3Title: "Туризм и сервис",
+                track3Text: "Современные цифровые решения и интеллектуальные платформы для индустрии услуг.",
+
+                partnersTitle: "Партнёры",
+
+                registerTitle: "Готов к вызову?",
+                registerText: "Собери команду и преврати цифровую идею в реальный проект.",
+                registerBtn: "Участвовать",
+                registerNote: "2 дня интенсива, AI, prototype, pitch",
+
+                footerDesc: "Соревнование по AI и цифровым инновациям. От идеи до prototype.",
+                footerNavTitle: "Навигация",
+                footerContactTitle: "Контакты",
+                footerLegalTitle: "Информация",
+                footerLegalText: "ATU IT Battle",
+                footerCopy: "© 2026 Almaty Technological University. ATU IT Battle."
+            },
+
+            en: {
+                lang: "en",
+                navHome: "Home",
+                navAbout: "About",
+                navWinner: "Winners",
+                navTasks: "Assignments",
+                navProgram: "Program",
+                navTracks: "Tracks",
+                navPlace: "Venue",
+                navRegister: "Join",
+                registerTime: "Registration",
+
+
+                heroBadge: "Almaty Technological University",
+                heroTitle: "“ATU IT Battle” <br><span class='text-blue-200'>digital solutions competition</span>",
+                heroSubtitle: "Turn your idea into reality with artificial intelligence and win at ATU IT Battle! Grand prize — 300,000 KZT!",
+                heroDateLabel: "Duration",
+                heroDateValue: "2 days",
+                heroPrizeLabel: "Grand Prize",
+                heroPrizeValue: "300,000 ₸",
+                heroRegister: "Join",
+
+                aboutTitle: "About the Competition",
+                aboutText: "The goal of the “ATU IT Battle” digital solutions competition is to develop modern digital and AI-based IT solutions aimed at solving pressing challenges in food production, finance, restaurant business, tourism, and the service industry, while also improving students’ innovative thinking and practical competencies.",
+
+                winnersTitle: "Winners",
+
+                participantsDoTitle: "During the competition, participants will",
+                do1: "Analyze real business cases and industry challenges",
+                do2: "Build a prototype of a digital product using artificial intelligence elements within a short time",
+                do3: "Present and defend their projects before an expert jury",
+
+                goalsTitle: "Key Objectives",
+                goal1: "Support digital transformation processes across economic sectors",
+                goal2: "Encourage practical use of artificial intelligence technologies",
+                goal3: "Promote startup culture and entrepreneurial initiatives",
+                goal4: "Develop teamwork, project management, and creative thinking skills",
+                goal5: "Create conditions for applied and competitive IT solutions",
+
+                infoTitle: "Assignments",
+                partner_name_1: "Task 1: Smart Quality Control",
+                partner_name_1_description: "Develop a tool for basic analysis of production metrics for the purpose of quality control.",
+                partner_name_2: "Task 2: Production Line Analysis",
+                partner_name_2_description: "Automate the detection of production anomalies based on raw sensor data using scripts.",
+                partner_name_3: "Task 3: ML Defect Model",
+                partner_name_3_description: "Develop and implement a machine learning algorithm for proactive detection of defective products.",
+                partner_name_4: "Task 4: IoT System",
+                partner_name_4_description: "Design a hardware-software system for real-time monitoring of a physical object's state.",
+                partner_name_5: "Task 5: Digital Twin",
+                partner_name_5_description: "Create a virtual copy of a physical installation, synchronized with its processes for visualization and analysis.",
+                partner_name_6: "Task 6: Predictive Control",
+                partner_name_6_description: "Develop an autonomous intelligent system capable of not only analyzing, but also making decisions to manage a complex process.",
+<!--                participantsTitle: "Participants",-->
+<!--                participantsText: "Students of higher education institutions of the Republic of Kazakhstan.",-->
+<!--                juryTitle: "Jury",-->
+<!--                juryText: "Leading specialists and experts from major companies, financial institutions, the IT industry, and business sectors.",-->
+
+                prizeTitle: "Grand Prize",
+                prizeMain: "300,000 KZT",
+                prizeDesc: "Awarded to the team that presents the best digital and AI-driven solution.",
+                prizeItem1: "Innovative idea",
+                prizeItem2: "Effective use of AI",
+                prizeItem3: "Practical value",
+                prizeItem4: "Strong presentation and defense",
+                prizeCardLabel: "Grand Prize",
+                prizeCardValue: "300,000 ₸",
+
+                placeTitle: "Venue & Format",
+                formatTitle: "Offline Format",
+                formatText: "The competition will be held offline. Participants will experience intensive teamwork, mentoring support, and live project defense sessions.",
+                placeAddress: "ATU Campus, Almaty, Furkat Street, 348/4",
+                placeDuration: "2-day program",
+                placeBoxTitle: "ATU IT Battle",
+                placeBoxText: "AI, digital products, team competition, pitch, and innovation",
+
+                programTitle: "Competition Program",
+                day1Title: "Day 1 — Idea + Development",
+                day2Title: "Day 2 — Finalization + Pitch",
+                day11: "Registration, opening ceremony",
+                day12: "Task briefing (track presentation)",
+                day13: "Team formation (2–4 members)",
+                day14: "Project idea + start of prototyping",
+                day15: "Coffee break",
+                day16: "Development time (with mentor support)",
+                day17: "Intermediate checkpoint (each team gives a 2-minute update)",
+                day21: "Final coding / presentation preparation",
+                day22: "Project pitching and defense",
+                day23: "Coffee break",
+                day24: "Jury discussion",
+                day25: "Award ceremony",
+
+                tracksTitle: "Tracks",
+                track1Title: "Food Production",
+                track1Text: "Digitalization of processes, efficiency improvement, and intelligent analytics systems.",
+                track2Title: "Finance",
+                track2Text: "Analytics, forecasting, customer services, and AI-powered financial tools.",
+                track3Title: "Tourism & Service",
+                track3Text: "Modern digital solutions and intelligent platforms for the service industry.",
+
+                partnersTitle: "Partners",
+
+                registerTitle: "Ready for the challenge?",
+                registerText: "Build your team and turn your digital idea into a real project.",
+                registerBtn: "Join",
+                registerNote: "2-day intensive, AI, prototype, pitch",
+
+                footerDesc: "AI and digital innovation competition. From idea to prototype.",
+                footerNavTitle: "Navigation",
+                footerContactTitle: "Contacts",
+                footerLegalTitle: "Info",
+                footerLegalText: "ATU IT Battle",
+                footerCopy: "© 2026 Almaty Technological University. ATU IT Battle."
+            }
+        };
+
+        function applyLang(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            document.documentElement.lang = t.lang;
+
+            // nav
+            document.querySelectorAll('.nav-home').forEach(el => el.textContent = t.navHome);
+            document.querySelectorAll('.nav-about').forEach(el => el.textContent = t.navAbout);
+            document.querySelectorAll('.nav-winner').forEach(el => el.textContent = t.navWinner);
+            document.querySelectorAll('.nav-tasks').forEach(el => el.textContent = t.navTasks);
+            document.querySelectorAll('.nav-program').forEach(el => el.textContent = t.navProgram);
+            document.querySelectorAll('.nav-tracks').forEach(el => el.textContent = t.navTracks);
+            document.querySelectorAll('.nav-place').forEach(el => el.textContent = t.navPlace);
+            document.getElementById('nav-register-btn').textContent = t.navRegister;
+            document.getElementById('mobile-register-btn').textContent = t.navRegister;
+
+            // hero
+            document.getElementById('hero-badge').textContent = t.heroBadge;
+            document.getElementById('hero-title').innerHTML = t.heroTitle;
+            document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+            document.getElementById('hero-date-label').textContent = t.heroDateLabel;
+            document.getElementById('hero-date-value').textContent = t.heroDateValue;
+            document.getElementById('hero-prize-label').textContent = t.heroPrizeLabel;
+            document.getElementById('hero-prize-value').textContent = t.heroPrizeValue;
+            document.getElementById('hero-register-btn').textContent = t.heroRegister;
+            document.getElementById('register_time').textContent = t.registerTime;
+
+            // about
+            document.getElementById('about-title').textContent = t.aboutTitle;
+            document.getElementById('about-text').textContent = t.aboutText;
+            document.getElementById('participants-do-title').textContent = t.participantsDoTitle;
+            document.getElementById('do-1').textContent = t.do1;
+            document.getElementById('do-2').textContent = t.do2;
+            document.getElementById('do-3').textContent = t.do3;
+
+            document.getElementById('goals-title').textContent = t.goalsTitle;
+            document.getElementById('goal-1').textContent = t.goal1;
+            document.getElementById('goal-2').textContent = t.goal2;
+            document.getElementById('goal-3').textContent = t.goal3;
+            document.getElementById('goal-4').textContent = t.goal4;
+            document.getElementById('goal-5').textContent = t.goal5;
+
+            // winners
+            {% if is_winners %}
+            document.getElementById('winners-title').textContent = t.winnersTitle;
+            {% endif %}
+
+            // info
+            document.getElementById('info-title').textContent = t.infoTitle;
+            if (t.partner_name_1) document.getElementById('partner_name_1').textContent = t.partner_name_1;
+            document.getElementById('partner_name_1_description').textContent = t.partner_name_1_description;
+            if (t.partner_name_2) document.getElementById('partner_name_2').textContent = t.partner_name_2;
+            document.getElementById('partner_name_2_description').textContent = t.partner_name_2_description;
+            if (t.partner_name_3) document.getElementById('partner_name_3').textContent = t.partner_name_3;
+            document.getElementById('partner_name_3_description').textContent = t.partner_name_3_description;
+            if (t.partner_name_4) document.getElementById('partner_name_4').textContent = t.partner_name_4;
+            document.getElementById('partner_name_4_description').textContent = t.partner_name_4_description;
+            if (t.partner_name_5) document.getElementById('partner_name_5').textContent = t.partner_name_5;
+            document.getElementById('partner_name_5_description').textContent = t.partner_name_5_description;
+            if (t.partner_name_6) document.getElementById('partner_name_6').textContent = t.partner_name_6;
+            document.getElementById('partner_name_6_description').textContent = t.partner_name_6_description;
+
+            // prize
+            document.getElementById('prize-title').textContent = t.prizeTitle;
+            document.getElementById('prize-main').textContent = t.prizeMain;
+            document.getElementById('prize-desc').textContent = t.prizeDesc;
+            document.getElementById('prize-item-1').textContent = t.prizeItem1;
+            document.getElementById('prize-item-2').textContent = t.prizeItem2;
+            document.getElementById('prize-item-3').textContent = t.prizeItem3;
+            document.getElementById('prize-item-4').textContent = t.prizeItem4;
+            document.getElementById('prize-card-label').textContent = t.prizeCardLabel;
+            document.getElementById('prize-card-value').textContent = t.prizeCardValue;
+
+            // place
+            document.getElementById('place-title').textContent = t.placeTitle;
+            document.getElementById('format-title').textContent = t.formatTitle;
+            document.getElementById('format-text').textContent = t.formatText;
+            document.getElementById('place-address').textContent = t.placeAddress;
+            document.getElementById('place-duration').textContent = t.placeDuration;
+
+            // program
+            document.getElementById('program-title').textContent = t.programTitle;
+            document.getElementById('day1-title').textContent = t.day1Title;
+            document.getElementById('day2-title').textContent = t.day2Title;
+            document.getElementById('day1-1').textContent = t.day11;
+            document.getElementById('day1-2').textContent = t.day12;
+            document.getElementById('day1-3').textContent = t.day13;
+            document.getElementById('day1-4').textContent = t.day14;
+            document.getElementById('day1-5').textContent = t.day15;
+            document.getElementById('day1-6').textContent = t.day16;
+            document.getElementById('day1-7').textContent = t.day17;
+            document.getElementById('day2-1').textContent = t.day21;
+            document.getElementById('day2-2').textContent = t.day22;
+            document.getElementById('day2-3').textContent = t.day23;
+            document.getElementById('day2-4').textContent = t.day24;
+            document.getElementById('day2-5').textContent = t.day25;
+
+            // tracks
+            document.getElementById('tracks-title').textContent = t.tracksTitle;
+            document.getElementById('track-1-title').textContent = t.track1Title;
+            document.getElementById('track-1-text').textContent = t.track1Text;
+            document.getElementById('track-2-title').textContent = t.track2Title;
+            document.getElementById('track-2-text').textContent = t.track2Text;
+            document.getElementById('track-3-title').textContent = t.track3Title;
+            document.getElementById('track-3-text').textContent = t.track3Text;
+
+            // partners
+            document.getElementById('partners-title').textContent = t.partnersTitle;
+
+            // register
+            document.getElementById('register-title').textContent = t.registerTitle;
+            document.getElementById('register-text').textContent = t.registerText;
+            document.getElementById('register-link').textContent = t.registerBtn;
+            document.getElementById('register-note').textContent = t.registerNote;
+
+            // footer
+            document.getElementById('footer-desc').textContent = t.footerDesc;
+            document.getElementById('footer-nav-title').textContent = t.footerNavTitle;
+            document.getElementById('footer-contact-title').textContent = t.footerContactTitle;
+            document.getElementById('footer-legal-title').textContent = t.footerLegalTitle;
+            document.getElementById('footer-legal-text').textContent = t.footerLegalText;
+            document.getElementById('footer-copy').textContent = t.footerCopy;
+
+            document.title = "ATU IT Battle";
+
+            localStorage.setItem('atu_lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) btn.classList.add('active');
+            });
+        }
+
+        // mobile menu
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // lang switch
+        document.querySelectorAll('.lang-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                applyLang(button.dataset.lang);
+            });
+        });
+
+        // initial language
+        const savedLang = localStorage.getItem('atu_lang') || 'kz';
+        applyLang(savedLang);
+    </script>
+</body>
+</html>
