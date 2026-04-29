@@ -126,8 +126,11 @@
                         <input type="text" id="searchInput" oninput="handleFilter()" placeholder="Поиск по команде или капитану..." data-i18n-placeholder="search_placeholder" class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20">
                     </div>
 
-                    <select id="trackFilter" onchange="handleFilter()" class="w-full md:w-64 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none">
-                        <option value="all" data-i18n="track_all">Все направления</option>
+<select
+  id="trackFilter"
+  onchange="handleFilter()"
+  class="absolute left-[-9999px]"
+>                        <option value="all" data-i18n="track_all">Все направления</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -141,7 +144,6 @@
                                 <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider" data-i18n="th_team">Команда</th>
                                 <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider" data-i18n="th_captain">Капитан</th>
                                 <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider" data-i18n="th_members">Участники</th>
-                                <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider" data-i18n="th_track">Трек</th>
                                 <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right" data-i18n="th_actions">Действия</th>
                             </tr>
                         </thead>
@@ -172,19 +174,19 @@
                 nav_teams: "Команды", nav_winners: "Победители", nav_timer: "Время", header_title: "Управление командами",
                 stat_teams: "Всего команд", stat_participants: "Всего участников", stat_avg: "Средний состав",
                 search_placeholder: "Поиск по команде или капитану...", track_all: "Все направления",
-                th_team: "Команда", th_captain: "Капитан", th_members: "Участники", th_track: "Трек", th_actions: "Действия"
+                th_team: "Команда", th_captain: "Капитан", th_members: "Участники", th_actions: "Действия"
             },
             kk: {
                 nav_teams: "Командалар", nav_winners: "Жеңімпаздар", nav_timer: "Уақыт", header_title: "Командаларды басқару",
                 stat_teams: "Барлық команда", stat_participants: "Барлық қатысушы", stat_avg: "Орташа құрам",
                 search_placeholder: "Команда немесе капитан бойынша іздеу...", track_all: "Барлық бағыттар",
-                th_team: "Команда", th_captain: "Капитан", th_members: "Қатысушылар", th_track: "Трек", th_actions: "Әрекеттер"
+                th_team: "Команда", th_captain: "Капитан", th_members: "Қатысушылар", th_actions: "Әрекеттер"
             },
             en: {
                 nav_teams: "Teams", nav_winners: "Winners", nav_timer: "Time", header_title: "Team Management",
                 stat_teams: "Total Teams", stat_participants: "Total Participants", stat_avg: "Avg Team Size",
                 search_placeholder: "Search by team or captain...", track_all: "All Tracks",
-                th_team: "Team", th_captain: "Captain", th_members: "Members", th_track: "Track", th_actions: "Actions"
+                th_team: "Team", th_captain: "Captain", th_members: "Members", th_actions: "Actions"
             }
         };
 
@@ -210,11 +212,6 @@
                                 <a href="/control-room-7x/dashboard/${t.name}" ><span class="text-sm font-bold text-gray-700">${t.members}</span></a>
                                 <i class="fas fa-user text-[10px] text-gray-300"></i>
                             </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase ${getTrackClass(t.track)}">
-                                ${t.track}
-                            </span>
                         </td>
                         <td class="px-6 py-4 text-right">
                             <a href="/control-room-7x/dashboard/${t.name}" ><button class="text-gray-400 hover:text-blue-600 mx-2"><i class="fas fa-external-link-alt"></i></button></a>
