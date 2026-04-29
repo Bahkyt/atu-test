@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация - ATU AI Competition</title>
+    <title>Регистрация - ATU & KazNU AI Hackathon</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -36,7 +36,7 @@
 
     <nav class="bg-white shadow-sm py-4">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center gap-4">
-            <a href="{{ url_for('main') }}" class="text-2xl font-extrabold text-blue-900 tracking-tighter">ATU</a>
+            <a href="{{ url_for('main') }}" class="text-2xl font-extrabold text-blue-900 tracking-tighter">ATU & KazNU</a>
 
             <div class="flex items-center gap-3">
                 <div class="hidden sm:flex items-center bg-gray-100 rounded-full p-1" role="group" aria-label="Language switcher">
@@ -83,13 +83,13 @@
                     </div>
 
                     <div>
-                        <label id="track-label" class="block text-sm font-bold text-gray-700 mb-2">Выбор направления (Трек) *</label>
-                        <select
-                            name="track"
-                            required
-                            class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition appearance-none"
-                        >
-                            <option id="track-placeholder" value="" disabled selected>Выберите категорию...</option>
+                        <label id="track-label" class="block text-sm font-bold text-gray-700 mb-2 opacity-0 absolute">Выбор направления (Трек) *</label>
+                    <select
+                      name="track"
+                      required
+                      class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl transition appearance-none opacity-0 absolute pointer-events-none"
+                    >
+                            <option id="track-placeholder" value="1" disabled selected>Выберите категорию...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -97,8 +97,6 @@
                     </div>
                 </div>
             </div>
-
-            <hr class="mb-10 border-gray-100">
 
             <div class="mb-10">
                 <h3 id="section-2-title" class="text-xl font-bold text-blue-900 mb-6 flex items-center">
@@ -230,7 +228,7 @@
         const translations = {
             ru: {
                 lang: "ru",
-                title: "Регистрация - ATU AI Competition",
+                title: "Регистрация - ATU & KazNU AI Hackathon",
                 back: "Вернуться на главную",
 
                 heroTitle: "Регистрация команды",
@@ -271,7 +269,7 @@
 
             kz: {
                 lang: "kz",
-                title: "Тіркелу - ATU AI Competition",
+                title: "Тіркелу - ATU & KazNU AI Hackathon",
                 back: "Басты бетке оралу",
 
                 heroTitle: "Команданы тіркеу",
@@ -312,7 +310,7 @@
 
             en: {
                 lang: "en",
-                title: "Registration - ATU AI Competition",
+                title: "Registration - ATU & KazNU AI Hackathon",
                 back: "Back to home",
 
                 heroTitle: "Team Registration",
@@ -332,7 +330,7 @@
                 captainPhone: "Phone (WhatsApp) *",
                 captainPhonePlaceholder: "+7 (___) ___-__-__",
                 captainOrg: "University / Organization *",
-                captainOrgPlaceholder: "E.g.: ATU",
+                captainOrgPlaceholder: "E.g.: ATU & KazNU",
                 captainCity: "City *",
                 captainCityPlaceholder: "E.g.: Almaty",
 
